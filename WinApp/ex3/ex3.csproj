@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8029CB18-750B-45CA-A0D0-28D272044B77}</ProjectGuid>
+    <ProjectGuid>{74A4BBB5-C79B-44D2-8CF0-D5859B258401}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ex2</RootNamespace>
-    <AssemblyName>ex2</AssemblyName>
+    <RootNamespace>ex3</RootNamespace>
+    <AssemblyName>ex3</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmFahrenheit.cs">
+    <Compile Include="frmNotaFinal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmFahrenheit.Designer.cs">
-      <DependentUpon>FrmFahrenheit.cs</DependentUpon>
+    <Compile Include="frmNotaFinal.Designer.cs">
+      <DependentUpon>frmNotaFinal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmFahrenheit.resx">
-      <DependentUpon>FrmFahrenheit.cs</DependentUpon>
+    <EmbeddedResource Include="frmNotaFinal.resx">
+      <DependentUpon>frmNotaFinal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

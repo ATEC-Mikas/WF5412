@@ -78,6 +78,7 @@
             this.btnCalcular.TabIndex = 4;
             this.btnCalcular.Text = "Calcular";
             this.btnCalcular.UseVisualStyleBackColor = true;
+            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
             // 
             // btnLimpar
             // 
@@ -87,11 +88,14 @@
             this.btnLimpar.TabIndex = 5;
             this.btnLimpar.Text = "Limpar cálculo";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // frmFahrenheit
             // 
+            this.AcceptButton = this.btnCalcular;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnLimpar;
             this.ClientSize = new System.Drawing.Size(314, 218);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnCalcular);
@@ -101,6 +105,7 @@
             this.Controls.Add(this.lblMisc1);
             this.Name = "frmFahrenheit";
             this.Text = "Celsius - Fahrenheit";
+            this.Load += new System.EventHandler(this.frmFahrenheit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
