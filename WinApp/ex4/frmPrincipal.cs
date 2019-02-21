@@ -89,5 +89,16 @@ namespace ex4
             }
             f.Show();
         }
+
+        private void queHorasSaoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmHoras f = this.MdiChildren.FirstOrDefault(xpto => xpto.GetType() == typeof(frmHoras)) as frmHoras;
+            if (f == null)
+            {
+                f = new frmHoras();
+                f.MdiParent = this;
+            }
+            f.Show();
+        }
     }
 }

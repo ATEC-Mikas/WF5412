@@ -42,6 +42,7 @@
             this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.emailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.queHorasSaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +86,8 @@
             this.cumprimentosToolStripMenuItem,
             this.fahrenheitToolStripMenuItem,
             this.calcularNotaToolStripMenuItem,
-            this.emailToolStripMenuItem});
+            this.emailToolStripMenuItem,
+            this.queHorasSaoToolStripMenuItem});
             this.exerciciosToolStripMenuItem.Name = "exerciciosToolStripMenuItem";
             this.exerciciosToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.exerciciosToolStripMenuItem.Text = "Exercicios";
@@ -157,6 +159,13 @@
             this.emailToolStripMenuItem.Text = "Email";
             this.emailToolStripMenuItem.Click += new System.EventHandler(this.emailToolStripMenuItem_Click);
             // 
+            // queHorasSaoToolStripMenuItem
+            // 
+            this.queHorasSaoToolStripMenuItem.Name = "queHorasSaoToolStripMenuItem";
+            this.queHorasSaoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.queHorasSaoToolStripMenuItem.Text = "Que Horas São";
+            this.queHorasSaoToolStripMenuItem.Click += new System.EventHandler(this.queHorasSaoToolStripMenuItem_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,6 +201,7 @@
         private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem emailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem queHorasSaoToolStripMenuItem;
     }
 }
 
