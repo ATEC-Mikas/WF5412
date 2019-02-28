@@ -36,13 +36,17 @@
             this.cumprimentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fahrenheitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calcularNotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.emailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.queHorasSaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quantoTempoPassouToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambioRadioButtonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambioCheckboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.janelaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cascataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.emailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.queHorasSaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambioDropDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +74,7 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -87,7 +91,11 @@
             this.fahrenheitToolStripMenuItem,
             this.calcularNotaToolStripMenuItem,
             this.emailToolStripMenuItem,
-            this.queHorasSaoToolStripMenuItem});
+            this.queHorasSaoToolStripMenuItem,
+            this.quantoTempoPassouToolStripMenuItem,
+            this.cambioRadioButtonToolStripMenuItem,
+            this.cambioCheckboxToolStripMenuItem,
+            this.cambioDropDownToolStripMenuItem});
             this.exerciciosToolStripMenuItem.Name = "exerciciosToolStripMenuItem";
             this.exerciciosToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.exerciciosToolStripMenuItem.Text = "Exercicios";
@@ -95,23 +103,58 @@
             // cumprimentosToolStripMenuItem
             // 
             this.cumprimentosToolStripMenuItem.Name = "cumprimentosToolStripMenuItem";
-            this.cumprimentosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cumprimentosToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.cumprimentosToolStripMenuItem.Text = "Cumprimentos";
             this.cumprimentosToolStripMenuItem.Click += new System.EventHandler(this.cumprimentosToolStripMenuItem_Click);
             // 
             // fahrenheitToolStripMenuItem
             // 
             this.fahrenheitToolStripMenuItem.Name = "fahrenheitToolStripMenuItem";
-            this.fahrenheitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fahrenheitToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.fahrenheitToolStripMenuItem.Text = "Fahrenheit";
             this.fahrenheitToolStripMenuItem.Click += new System.EventHandler(this.fahrenheitToolStripMenuItem_Click);
             // 
             // calcularNotaToolStripMenuItem
             // 
             this.calcularNotaToolStripMenuItem.Name = "calcularNotaToolStripMenuItem";
-            this.calcularNotaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.calcularNotaToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.calcularNotaToolStripMenuItem.Text = "Calcular Nota";
             this.calcularNotaToolStripMenuItem.Click += new System.EventHandler(this.calcularNotaToolStripMenuItem_Click);
+            // 
+            // emailToolStripMenuItem
+            // 
+            this.emailToolStripMenuItem.Name = "emailToolStripMenuItem";
+            this.emailToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.emailToolStripMenuItem.Text = "Email";
+            this.emailToolStripMenuItem.Click += new System.EventHandler(this.emailToolStripMenuItem_Click);
+            // 
+            // queHorasSaoToolStripMenuItem
+            // 
+            this.queHorasSaoToolStripMenuItem.Name = "queHorasSaoToolStripMenuItem";
+            this.queHorasSaoToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.queHorasSaoToolStripMenuItem.Text = "Que Horas São";
+            this.queHorasSaoToolStripMenuItem.Click += new System.EventHandler(this.queHorasSaoToolStripMenuItem_Click);
+            // 
+            // quantoTempoPassouToolStripMenuItem
+            // 
+            this.quantoTempoPassouToolStripMenuItem.Name = "quantoTempoPassouToolStripMenuItem";
+            this.quantoTempoPassouToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.quantoTempoPassouToolStripMenuItem.Text = "Quanto Tempo Passou";
+            this.quantoTempoPassouToolStripMenuItem.Click += new System.EventHandler(this.quantoTempoPassouToolStripMenuItem_Click);
+            // 
+            // cambioRadioButtonToolStripMenuItem
+            // 
+            this.cambioRadioButtonToolStripMenuItem.Name = "cambioRadioButtonToolStripMenuItem";
+            this.cambioRadioButtonToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.cambioRadioButtonToolStripMenuItem.Text = "Cambio Radio Button";
+            this.cambioRadioButtonToolStripMenuItem.Click += new System.EventHandler(this.cambioRadioButtonToolStripMenuItem_Click);
+            // 
+            // cambioCheckboxToolStripMenuItem
+            // 
+            this.cambioCheckboxToolStripMenuItem.Name = "cambioCheckboxToolStripMenuItem";
+            this.cambioCheckboxToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.cambioCheckboxToolStripMenuItem.Text = "Cambio Checkbox";
+            this.cambioCheckboxToolStripMenuItem.Click += new System.EventHandler(this.cambioCheckboxToolStripMenuItem_Click);
             // 
             // janelaToolStripMenuItem
             // 
@@ -152,19 +195,12 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // emailToolStripMenuItem
+            // cambioDropDownToolStripMenuItem
             // 
-            this.emailToolStripMenuItem.Name = "emailToolStripMenuItem";
-            this.emailToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.emailToolStripMenuItem.Text = "Email";
-            this.emailToolStripMenuItem.Click += new System.EventHandler(this.emailToolStripMenuItem_Click);
-            // 
-            // queHorasSaoToolStripMenuItem
-            // 
-            this.queHorasSaoToolStripMenuItem.Name = "queHorasSaoToolStripMenuItem";
-            this.queHorasSaoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.queHorasSaoToolStripMenuItem.Text = "Que Horas São";
-            this.queHorasSaoToolStripMenuItem.Click += new System.EventHandler(this.queHorasSaoToolStripMenuItem_Click);
+            this.cambioDropDownToolStripMenuItem.Name = "cambioDropDownToolStripMenuItem";
+            this.cambioDropDownToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.cambioDropDownToolStripMenuItem.Text = "Cambio DropDown";
+            this.cambioDropDownToolStripMenuItem.Click += new System.EventHandler(this.cambioDropDownToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
@@ -177,6 +213,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmPrincipal";
             this.Text = "Formulário Principal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -202,6 +239,10 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem emailToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem queHorasSaoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quantoTempoPassouToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cambioRadioButtonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cambioCheckboxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cambioDropDownToolStripMenuItem;
     }
 }
 

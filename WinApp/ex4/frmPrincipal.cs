@@ -100,5 +100,55 @@ namespace ex4
             }
             f.Show();
         }
+
+        private void quantoTempoPassouToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmQuantoTempoPassou f = this.MdiChildren.FirstOrDefault(xpto => xpto.GetType() == typeof(frmQuantoTempoPassou)) as frmQuantoTempoPassou;
+            if (f == null)
+            {
+                f = new frmQuantoTempoPassou();
+                f.MdiParent = this;
+            }
+            f.Show();
+        }
+
+        private void cambioRadioButtonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCambioRadioButton f = this.MdiChildren.FirstOrDefault(xpto => xpto.GetType() == typeof(frmCambioRadioButton)) as frmCambioRadioButton;
+            if (f == null)
+            {
+                f = new frmCambioRadioButton();
+                f.MdiParent = this;
+            }
+            f.Show();
+        }
+
+        private void cambioCheckboxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCambioCheckbox f = this.MdiChildren.FirstOrDefault(xpto => xpto.GetType() == typeof(frmCambioCheckbox)) as frmCambioCheckbox;
+            if (f == null)
+            {
+                f = new frmCambioCheckbox();
+                f.MdiParent = this;
+            }
+            f.Show();
+        }
+
+        private void cambioDropDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCambioDropdown f = this.MdiChildren.FirstOrDefault(xpto => xpto.GetType() == typeof(frmCambioDropdown)) as frmCambioDropdown;
+            if (f == null)
+            {
+                f = new frmCambioDropdown();
+                f.MdiParent = this;
+            }
+            f.Show();
+        }
+
+        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult r = MessageBox.Show("De certeza que quer fechar o programa", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            e.Cancel = !(r == DialogResult.Yes);
+        }
     }
 }
