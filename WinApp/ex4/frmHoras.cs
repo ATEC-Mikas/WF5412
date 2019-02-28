@@ -33,13 +33,13 @@ namespace ex4
 
         private void Atualizar()
         {
-            DateTime now = DateTime.Now;
-            pbHoras.Value = now.Hour;
-            lblHoras.Text = string.Format("{0} Horas", now.Hour);
-            pbMinutos.Value = now.Minute;
-            lblMinutos.Text = string.Format("{0} Minutos", now.Minute);
+            now = DateTime.Now;
             pbSegundos.Value = now.Second;
             lblSegundos.Text = string.Format("{0} Segundos", now.Second);
+            pbMinutos.Value = now.Minute;
+            lblMinutos.Text = string.Format("{0} Minutos", now.Minute);
+            pbHoras.Value = now.Hour;
+            lblHoras.Text = string.Format("{0} Horas", now.Hour);
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)

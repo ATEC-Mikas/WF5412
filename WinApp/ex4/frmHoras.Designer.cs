@@ -169,5 +169,6 @@
         private System.Windows.Forms.RadioButton radioManual;
         private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Timer Timer;
+        private System.DateTime now;
     }
 }
