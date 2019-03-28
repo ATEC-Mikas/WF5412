@@ -8,25 +8,28 @@ namespace MinhasClasses
 {
     public class Livro
     {
-        //atributo
+        //atributo 
         private string _isbn;
         private string _titulo;
         private GeneroLivro _genero;
         private DateTime _dataPublicacao;
         private Editora _editora;
+        private Autor _autor;
+
         //validar string generico
         private bool validarStringGen(string s)
         {
             return !String.IsNullOrEmpty(s) || !String.IsNullOrWhiteSpace(s);
         }
         //Construtores
-        public Livro(string isb,string titulo,GeneroLivro gen,DateTime datapub,Editora edit)
+        public Livro(string isb,string titulo,GeneroLivro gen,DateTime datapub,Editora edit,Autor autor)
         {
             _isbn = isb;
             _titulo = titulo;
             _genero = gen;
             _dataPublicacao = datapub;
             _editora = edit;
+            _autor = autor;
         }
 
         public string Isbn
@@ -48,6 +51,10 @@ namespace MinhasClasses
         public Editora Editora
         {
             get { return _editora; }
+        }
+        public Autor Autor
+        {
+            get { return _autor; }
         }
 
         //Metodos

@@ -21,6 +21,11 @@ namespace MinhasClasses
         {
             Nome = n;
         }
+        public Editora(Editora x) 
+        {
+            _id = x.Id;
+            _nome = x.Nome;
+        }
         //Get & Sets
         public string Id
         {
