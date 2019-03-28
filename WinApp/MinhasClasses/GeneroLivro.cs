@@ -9,41 +9,36 @@ namespace MinhasClasses
     public class GeneroLivro
     {
         //Atributos
-        private string id;
-        private string descricao;
+        private string _id;
+        private string _descricao;
         //Construtores
         public GeneroLivro()
         {
-            id = Guid.NewGuid().ToString();
-            descricao = String.Empty;
+            _id = Guid.NewGuid().ToString();
+            _descricao = String.Empty;
         }
         public GeneroLivro(string desc) :  this()
         {
-            if (!setDesc(desc))
-                desc = "erro";
+            Descricao = desc;
         }
-        //Sets & gets
-        public string getID()
+
+        public string Id
         {
-            return id;
+            get { return _id; }
         }
-        public string getDesc()
+        public string Descricao
         {
-            return descricao;
-        }
-        public bool setDesc(string d)
-        {
-            if(!string.IsNullOrEmpty(d))
+            get { return _descricao; }
+            set
             {
-                descricao = d;
-                return true;
+                if (!string.IsNullOrEmpty(value))
+                    _descricao = value;
             }
-            return false;
         }
         //Métodos
         public string ImprimeDados()
         {
-            return string.Format("Id: {0} | Descricao: {1}", id, descricao);
+            return string.Format("Id: {0} | Descricao: {1}", Id, Descricao);
         }
     }
 }

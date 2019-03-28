@@ -9,41 +9,42 @@ namespace MinhasClasses
     public class Editora
     {
         //Atributos
-        private string id;
-        private string nome;
+        private string _id;
+        private string _nome;
         //Construtores
         public Editora()
         {
-            id = Guid.NewGuid().ToString();
-            nome = string.Empty;
+            _id = Guid.NewGuid().ToString();
+            _nome = string.Empty;
         }
         public Editora(string n) : this()
         {
-            if(!setNome(n))
-                nome="erro";
+            Nome = n;
         }
         //Get & Sets
-        public string getID()
+        public string Id
         {
-            return id;
-        }
-        public string getNome()
-        {
-            return nome;
-        }
-        public bool setNome(string n)
-        {
-            if(!String.IsNullOrEmpty(n))
+            get
             {
-                nome = n;
-                return true;
+                return _id;
             }
-            return false;
+        }
+        public string Nome
+        {
+            get
+            {
+                return _nome;
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                    _nome = value;
+            }
         }
         //Metodo
         public string ImprimeDados()
         {
-            return string.Format("id: {0} | Nome: {1}\n",id,nome);
+            return string.Format("id: {0} | Nome: {1}\n",Id,Nome);
         }
     }
 }

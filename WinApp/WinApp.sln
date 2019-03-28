@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhasClasses", "MinhasClas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteClasses_Consola", "TesteClasses_Consola\TesteClasses_Consola.csproj", "{D5F2C3D6-CE9A-42B3-B6C3-198CADA16D15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteClasses_Forms", "TesteClasses_Forms\TesteClasses_Forms.csproj", "{D94771B1-CFF4-4C62-9EA7-C957CF42798A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D5F2C3D6-CE9A-42B3-B6C3-198CADA16D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5F2C3D6-CE9A-42B3-B6C3-198CADA16D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5F2C3D6-CE9A-42B3-B6C3-198CADA16D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D94771B1-CFF4-4C62-9EA7-C957CF42798A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D94771B1-CFF4-4C62-9EA7-C957CF42798A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D94771B1-CFF4-4C62-9EA7-C957CF42798A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D94771B1-CFF4-4C62-9EA7-C957CF42798A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

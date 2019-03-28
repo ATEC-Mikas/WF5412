@@ -9,58 +9,50 @@ namespace MinhasClasses
     public class Autor
     {
         //Atributos
-        private string id;
-        private string nome;
-        private List<Editora> editorasUsadas;
+        private string _id;
+        private string _nome;
+        private List<Editora> _editorasUsadas;
         //Construtores
         public Autor()
         {
-            id = Guid.NewGuid().ToString();
-            nome = string.Empty;
-            editorasUsadas = new List<Editora>();
+            _id = Guid.NewGuid().ToString();
+            _nome = string.Empty;
+            _editorasUsadas = new List<Editora>();
 
         }
         public Autor(string nome,List<Editora> listaEdit) : this()
         {
-            if (!setNome(nome))
-                this.nome = "erro";
-            if (!setLista(listaEdit))
-                this.editorasUsadas = new List<Editora>();
+            Nome = nome;
+            EditorasUsadas = new List<Editora>(listaEdit);
+        }
+
+        public string Id
+        {
+            get { return _id; }
+        }
+
+        public string Nome
+        {
+            get { return _nome; }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                    _nome = value;
+            }
+        }
+        public List<Editora> EditorasUsadas
+        {
+            get { return _editorasUsadas; }
+            set { if (value.Count != 0) _editorasUsadas = new List<Editora>(value); }
         }
         //Sets&Gets
-        public string getNome()
-        {
-            return nome;
-        }
-        public bool setNome(string nome)
-        {
-            if(!string.IsNullOrEmpty(nome))
-            {
-                this.nome = nome;
-                return true;
-            }
-            return false;
-        }
-        public List<Editora> getLista()
-        {
-            return editorasUsadas;
-        }
-        public bool setLista(List<Editora> list)
-        {
-            if(list.Count!=0)
-            {
-                editorasUsadas = new List<Editora>(list);
-                return true;
-            }
-            return false;
-        }
         //Metodos
         public string ImprimeDados()
         {
             string r;
             r = string.Format("Id: {0}" +
-                            "\nNome: {1}\n",id,nome);
-            foreach(Editora x in editorasUsadas)
+                            "\nNome: {1}\n",Id,Nome);
+            foreach(Editora x in EditorasUsadas)
                 r += "Editora: "+x.ImprimeDados();
 
             return r;

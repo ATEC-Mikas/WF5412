@@ -9,11 +9,11 @@ namespace MinhasClasses
     public class Livro
     {
         //atributo
-        private string isbn;
-        private string titulo;
-        private GeneroLivro genero;
-        private DateTime dataPublicacao;
-        private Editora editora;
+        private string _isbn;
+        private string _titulo;
+        private GeneroLivro _genero;
+        private DateTime _dataPublicacao;
+        private Editora _editora;
         //validar string generico
         private bool validarStringGen(string s)
         {
@@ -22,33 +22,34 @@ namespace MinhasClasses
         //Construtores
         public Livro(string isb,string titulo,GeneroLivro gen,DateTime datapub,Editora edit)
         {
-            isbn = isb;
-            this.titulo = titulo;
-            genero = gen;
-            dataPublicacao = datapub;
-            editora = edit;
+            _isbn = isb;
+            _titulo = titulo;
+            _genero = gen;
+            _dataPublicacao = datapub;
+            _editora = edit;
         }
-        //Gets & sets
-        public string getIsbn()
+
+        public string Isbn
         {
-            return isbn;
+            get { return _isbn; }
         }
-        public string getTitulo()
+        public string Titulo
         {
-            return titulo;
+            get { return _titulo; }
         }
-        public GeneroLivro getGenero()
+        public GeneroLivro Genero
         {
-            return genero;
+            get { return _genero; }
         }
-        public DateTime getDataPub()
+        public DateTime DataPublicacao
         {
-            return dataPublicacao;
+            get { return _dataPublicacao; }
         }
-        public Editora getEditora()
+        public Editora Editora
         {
-            return editora;
+            get { return _editora; }
         }
+
         //Metodos
         public string ImprimeDados()
         {
@@ -56,10 +57,10 @@ namespace MinhasClasses
                                "\nTitulo: {1}" +
                                "\nGenero: {2}" +
                                "\nData Publicação: {3}" +
-                               "\nEditora: {4}", isbn, titulo, 
-                               genero.ImprimeDados(),
-                               dataPublicacao.ToShortDateString(),
-                               editora.ImprimeDados());
+                               "\nEditora: {4}", Isbn, Titulo, 
+                               Genero.ImprimeDados(),
+                               DataPublicacao.ToShortDateString(),
+                               Editora.ImprimeDados());
         }
     }
 }

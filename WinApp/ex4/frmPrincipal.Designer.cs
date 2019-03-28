@@ -41,12 +41,12 @@
             this.quantoTempoPassouToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambioRadioButtonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambioCheckboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cambioDropDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.janelaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cascataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.cambioDropDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,6 +156,13 @@
             this.cambioCheckboxToolStripMenuItem.Text = "Cambio Checkbox";
             this.cambioCheckboxToolStripMenuItem.Click += new System.EventHandler(this.cambioCheckboxToolStripMenuItem_Click);
             // 
+            // cambioDropDownToolStripMenuItem
+            // 
+            this.cambioDropDownToolStripMenuItem.Name = "cambioDropDownToolStripMenuItem";
+            this.cambioDropDownToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.cambioDropDownToolStripMenuItem.Text = "Cambio DropDown";
+            this.cambioDropDownToolStripMenuItem.Click += new System.EventHandler(this.cambioDropDownToolStripMenuItem_Click);
+            // 
             // janelaToolStripMenuItem
             // 
             this.janelaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -194,13 +201,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(833, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // cambioDropDownToolStripMenuItem
-            // 
-            this.cambioDropDownToolStripMenuItem.Name = "cambioDropDownToolStripMenuItem";
-            this.cambioDropDownToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.cambioDropDownToolStripMenuItem.Text = "Cambio DropDown";
-            this.cambioDropDownToolStripMenuItem.Click += new System.EventHandler(this.cambioDropDownToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
