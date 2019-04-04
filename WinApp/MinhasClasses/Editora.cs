@@ -33,6 +33,11 @@ namespace MinhasClasses
             {
                 return _id;
             }
+            set
+            {
+                if (value != null)
+                    _id = value;
+            }
         }
         public string Nome
         {
