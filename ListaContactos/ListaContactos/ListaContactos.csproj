@@ -53,6 +53,7 @@
     </Compile>
     <Compile Include="libs\Conta.cs" />
     <Compile Include="libs\Contas.cs" />
+    <Compile Include="libs\DAL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormDebug.resx">
