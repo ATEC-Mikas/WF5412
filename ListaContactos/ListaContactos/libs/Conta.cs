@@ -28,6 +28,13 @@ namespace ListaContactos
             _password = password;
         }
 
+        public Conta(Conta c)
+        {
+            User = c.User;
+            Nome = c.Nome;
+            _password = c.Password;
+        }
+
         public string User
         {
             get { return _user; }
