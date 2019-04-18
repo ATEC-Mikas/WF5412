@@ -70,6 +70,13 @@ namespace ListaContactos
             _publico = publico;
         }
 
+        private bool validarString(string s)
+        {
+            return !String.IsNullOrEmpty(s) && !String.IsNullOrWhiteSpace(s) && s.Count() < 100 && s.Count() > 3;
+        }
+
+        public string ID { get { return _id; } }
+        public string Nome { get { return _nome; } set { if(validarString(_nome)} }
         
 
 
