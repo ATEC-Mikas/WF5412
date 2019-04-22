@@ -17,7 +17,7 @@ namespace ListaContactos
             _conexao = new OleDbConnection();
             _conexao.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db\\listacontactos.mdb;";
             _tabela = tabela;
-            _logs = new Log("logs/" + _tabela+".txt");
+            _logs = new Log($"logs/{_tabela}.txt");
         }
 
         public OleDbDataReader get(string s)
@@ -27,7 +27,7 @@ namespace ListaContactos
 
 
             OleDbCommand comando = new OleDbCommand();
-            comando.CommandText = "SELECT " + s + " FROM [" + _tabela + "]";
+            comando.CommandText = $"SELECT {s} FROM [{_tabela}]";
             
             comando.Connection = _conexao;
             OleDbDataReader t = comando.ExecuteReader();
@@ -42,7 +42,7 @@ namespace ListaContactos
 
 
             OleDbCommand comando = new OleDbCommand();
-            comando.CommandText = "SELECT " + s + " FROM ["+_tabela+"] "+a;
+            comando.CommandText = $"SELECT {s} FROM [{_tabela}] {a}";
 
             comando.Connection = _conexao;
             OleDbDataReader t = comando.ExecuteReader();
@@ -60,20 +60,15 @@ namespace ListaContactos
             string valor = string.Empty;
             for (int i = 0; i < kv.Count; i++)
             {
-                if(i==kv.Count-1)
+                id += $"[{kv[i].Key}]";
+                if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao")
+                     valor += kv[i].Value;
+                else 
+                     valor += $"'{kv[i].Value}'";
+                if (i != kv.Count - 1)
                 {
-                    id += "["+kv[i].Key+"]";
-                    if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao")
-                        valor += kv[i].Value;
-                    else 
-                        valor += "'"+kv[i].Value+"'";
-                } else
-                {
-                    id += "["+kv[i].Key+"],";
-                    if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao")
-                        valor += kv[i].Value+",";
-                    else
-                        valor += "'" + kv[i].Value + "',";
+                    id += ",";
+                    valor += ",";
                 }
 
             }
@@ -81,7 +76,7 @@ namespace ListaContactos
 
             OleDbCommand comando = new OleDbCommand();
             comando.Connection = _conexao;
-            comando.CommandText = "INSERT INTO [" + _tabela + "]("+id+") VALUES ("+valor+") ";
+            comando.CommandText = $"INSERT INTO [{_tabela}]({id}) VALUES ({valor})";
             try {
                 comando.ExecuteNonQuery();     
             }
@@ -104,26 +99,20 @@ namespace ListaContactos
             string set = string.Empty;
             for (int i = 0; i < kv.Count; i++)
             {
-                if (i == kv.Count - 1)
-                {
-                    if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao")
-                        set += "[" + kv[i].Key + "] = " + kv[i].Value;
-                    else
-                        set += "[" + kv[i].Key + "] = '" + kv[i].Value + "'";
-                }
+                if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao")
+                    set += $"[{kv[i].Key}] = {kv[i].Value}";
                 else
+                    set += $"[{kv[i].Key}] = '{kv[i].Value}'";
+                if (i != kv.Count - 1)
                 {
-                    if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao")
-                        set += "[" + kv[i].Key + "] = " + kv[i].Value+",";
-                    else
-                        set += "[" + kv[i].Key + "] = '" + kv[i].Value + "',";
+                    set += ",";
                 }
             }
 
 
             OleDbCommand comando = new OleDbCommand();
             comando.Connection = _conexao;
-            comando.CommandText = "UPDATE ["+_tabela+"] SET "+set+" "+a;
+            comando.CommandText = $"UPDATE [{_tabela}] SET {set} {a}";
             try
             {
                 comando.ExecuteNonQuery();
@@ -147,7 +136,7 @@ namespace ListaContactos
 
             OleDbCommand comando = new OleDbCommand();
             comando.Connection = _conexao;
-            comando.CommandText = "delete * from [" + _tabela + "] " + a;
+            comando.CommandText = $"delete * from [{_tabela}] {a}";
             try
             {
                 comando.ExecuteNonQuery();
@@ -170,7 +159,7 @@ namespace ListaContactos
 
 
             OleDbCommand comando = new OleDbCommand();
-            comando.CommandText = "SELECT * FROM [" + _tabela + "] "+a;
+            comando.CommandText = $"SELECT * FROM [{_tabela}] {a}";
             comando.Connection = _conexao;
             OleDbDataReader t = comando.ExecuteReader();
             if(t.HasRows)
