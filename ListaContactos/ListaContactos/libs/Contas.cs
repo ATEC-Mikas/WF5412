@@ -9,7 +9,7 @@ namespace ListaContactos
 {
     public static class Contas
     {
-        public static DAL _dal = new DAL("Conta");
+        private static DAL _dal = new DAL("Conta");
 
         public static List<Conta> all()
         {

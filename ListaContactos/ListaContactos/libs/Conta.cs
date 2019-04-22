@@ -66,9 +66,9 @@ namespace ListaContactos
             if (_passwordChanged)
                 kv.Add(new KeyValuePair<string, string>("password", _password));
 
-            if(dal.exists("where username = '"+_user+"'"))
+            if(dal.exists($"where username = '{_user}'"))
             {
-                return dal.update(kv, "where username = '" + _user + "'");
+                return dal.update(kv, $"where username = '{_user}'");
             }else
             {
                 kv.Add(new KeyValuePair<string, string>("username", _user));
@@ -79,8 +79,8 @@ namespace ListaContactos
         public bool delete()
         {
             DAL dal = new DAL("Conta");
-            if (dal.exists("where username = '" + _user + "'"))
-                return dal.delete("where username = '" + _user + "'");
+            if (dal.exists($"where username = '{_user}'"))
+                return dal.delete($"where username = '{_user}'");
             return false;
         }
         public bool comparePassword(string p)

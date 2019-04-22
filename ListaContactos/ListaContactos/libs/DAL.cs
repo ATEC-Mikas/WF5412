@@ -99,7 +99,7 @@ namespace ListaContactos
             string set = string.Empty;
             for (int i = 0; i < kv.Count; i++)
             {
-                if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao")
+                if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao" || kv[i].Key == "publico")
                     set += $"[{kv[i].Key}] = {kv[i].Value}";
                 else
                     set += $"[{kv[i].Key}] = '{kv[i].Value}'";
