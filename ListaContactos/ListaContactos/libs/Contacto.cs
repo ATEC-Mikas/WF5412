@@ -87,19 +87,22 @@ namespace ListaContactos
         public Conta Criador { get { return _criador; } }
         public DateTime DataCriada { get { return _dataCriada; } }
         public List<KeyValuePair<string,string>> Comunicacoes { get { return _comunicacoes; } }
+        public List<string> Empresas { get { return _empresas; } }
         public bool Publico { get { return _publico; } set { if (value != _publico) { _publico = value; _publicoChanged = true; } } }
+
+
 
         public void AdicionarComunicacao(string k,string v)
         {
-            Comunicacoes.Add(new KeyValuePair<string, string>(k, v));
+            _comunicacoes.Add(new KeyValuePair<string, string>(k, v));
             _comunicacoesChanged = true;
         }
 
         public bool RemoverComunicacao(int i)
         {
-            if(i>=0&&i>Comunicacoes.Count-1)
+            if(i>=0&&i>_comunicacoes.Count-1)
             {
-                Comunicacoes.RemoveAt(i);
+                _comunicacoes.RemoveAt(i);
                 _comunicacoesChanged = true;
                 return true;
             }
@@ -109,13 +112,39 @@ namespace ListaContactos
         public bool RemoverComunicacao(string k,string v)
         {
             if(!_comunicacoesChanged)
-                return _comunicacoesChanged = Comunicacoes.Remove(new KeyValuePair<string, string>(k, v));
+                return _comunicacoesChanged = _comunicacoes.Remove(new KeyValuePair<string, string>(k, v));
             else 
-                return Comunicacoes.Remove(new KeyValuePair<string, string>(k, v));
+                return _comunicacoes.Remove(new KeyValuePair<string, string>(k, v));
+        }
+
+        public void AdicionarEmpresa(string s)
+        {
+            _empresas.Add(s);
+            _empresasChanged = true;
+        }
+
+        public bool RemoverEmpresa(int i)
+        {
+            if (i >= 0 && i > _empresas.Count - 1)
+            {
+                _empresas.RemoveAt(i);
+                _empresasChanged = true;
+                return true;
+            }
+            return false;
+        }
+
+        public bool RemoverEmpresa(string s)
+        {
+            if (!_empresasChanged)
+                return _empresasChanged = _empresas.Remove(s);
+            else
+                return _empresas.Remove(s);
         }
 
         public bool save()
         {
+            bool sucesso = false;
             //private bool _nomeChanged;
             //private bool _tituloChanged;
             //private bool _moradaChanged;
@@ -133,26 +162,28 @@ namespace ListaContactos
                 kv.Add(new KeyValuePair<string, string>("morada", _morada));
             if(_nifChanged)
                 kv.Add(new KeyValuePair<string, string>("nif", _nif.ToString()));
+            if(_publicoChanged)
+                kv.Add(new KeyValuePair<string, string>("publico", _publico.ToString()));
+
+            if (dal.exists($"where id = '{_id}'"))
+            {
+                sucesso = dal.update(kv, $"where id = '{_id}'");
+            }
+            else
+            {
+                kv.Add(new KeyValuePair<string, string>("id", _id));
+                sucesso = dal.insert(kv);
+            }
+
             if(_comunicacoesChanged)
             {
                 //TODO : Criar classe comunicacoes para auxiliar esta parte
             }
             if(_empresasChanged)
             {
-                //TODO : criar classe empresa para auxiliar esta parte
-            } 
-            if(_publicoChanged)
-                kv.Add(new KeyValuePair<string, string>("publico", _publico.ToString()));
-
-            if (dal.exists($"where id = '{_id}'"))
-            {
-                return dal.update(kv, $"where id = '{_id}'");
+                ListaContactos.Empresas.Sync(_empresas, _id);
             }
-            else
-            {
-                kv.Add(new KeyValuePair<string, string>("id", _id));
-                return dal.insert(kv);
-            }
+            return sucesso;
         }
 
         public bool delete()

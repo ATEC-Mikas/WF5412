@@ -54,10 +54,12 @@
     <Compile Include="FormDebug.Designer.cs">
       <DependentUpon>FormDebug.cs</DependentUpon>
     </Compile>
+    <Compile Include="libs\Comunicacoes.cs" />
     <Compile Include="libs\Conta.cs" />
     <Compile Include="libs\Contacto.cs" />
     <Compile Include="libs\Contas.cs" />
     <Compile Include="libs\DAL.cs" />
+    <Compile Include="libs\Empresas.cs" />
     <Compile Include="libs\Log.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
