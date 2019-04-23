@@ -40,5 +40,20 @@ namespace ListaContactos
             }
             return contas;
         }
+
+        public static Conta FindByUser(string id)
+        {
+            OleDbDataReader data = _dal.find("username,nome,password", $"where username='{id}'");
+            Conta t=null;
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    t = new Conta(data.GetString(0), data.GetString(1), data.GetString(2));
+                }
+                data.Close();
+            }
+            return t;
+        }
     }
 }

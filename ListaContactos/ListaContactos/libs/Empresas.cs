@@ -15,7 +15,7 @@ namespace ListaContactos
         {
             List<string> l = new List<string>();
 
-            OleDbDataReader data = _dal.find("nome_empresa", $"where id_contacto={id}");
+            OleDbDataReader data = _dal.find("nome_empresa", $"where id_contacto='{id}'");
             if (data.HasRows)
             {
                 while (data.Read())
@@ -29,6 +29,12 @@ namespace ListaContactos
         public static void Sync(List<string> l,string id)
         {
             List<string> lb = FindById(id);
+
+            foreach (string s in lb)
+                if (!l.Contains(s))
+                    _dal.delete($"where id_contacto='{id}' and nome_empresa='{s}'");
+
+            lb = FindById(id);
             foreach(string s in l)
             {
                 if(!lb.Contains(s))

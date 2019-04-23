@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ListaContactos
 {
-    class Contacto
+    public class Contacto
     {
         private string _id;
         private string _nome;
@@ -39,13 +39,13 @@ namespace ListaContactos
 
         public Contacto(Conta c) : this()
         {
-            DAL dal = new DAL("Contacto");
+            DAL dal = new DAL("Contato");
             string guid_temp;
             do
             {
                 guid_temp = Guid.NewGuid().ToString();
             }
-            while (dal.exists("where id='" + guid_temp + "'"));
+            while (dal.exists($"where id='{guid_temp}'"));
             _id = guid_temp;
             _nome = string.Empty;
             _titulo = string.Empty;
@@ -59,7 +59,7 @@ namespace ListaContactos
 
         }
 
-        public Contacto(string id,string nome,string titulo,string morada,int nif,Conta criador,DateTime dataCriada,List<KeyValuePair<string,string>> comunicacoes, bool publico) : this()
+        public Contacto(string id,string nome,string titulo,string morada,int nif,Conta criador,DateTime dataCriada, bool publico, List<KeyValuePair<string, string>> comunicacoes, List<string> empresas) : this()
         {
             _id = id;
             _nome = nome;
@@ -68,8 +68,9 @@ namespace ListaContactos
             _nif = nif;
             _criador = new Conta(criador);
             _dataCriada = dataCriada;
-            _comunicacoes = new List<KeyValuePair<string, string>>(comunicacoes);
             _publico = publico;
+            _comunicacoes = new List<KeyValuePair<string, string>>(comunicacoes);
+            _empresas = new List<string>(empresas);
         }
 
         private bool validarString(string s,int max = 100,int min = 3)
@@ -152,7 +153,7 @@ namespace ListaContactos
             //private bool _comunicacoesChanged;
             //private bool _empresasChanged;
             //private bool _publicoChanged;
-            DAL dal = new DAL("Contacto");
+            DAL dal = new DAL("Contato");
             List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
             if (_nomeChanged)
                 kv.Add(new KeyValuePair<string, string>("nome", _nome));
@@ -172,12 +173,14 @@ namespace ListaContactos
             else
             {
                 kv.Add(new KeyValuePair<string, string>("id", _id));
+                kv.Add(new KeyValuePair<string, string>("criador", _criador.User));
+                kv.Add(new KeyValuePair<string, string>("data_criado", _dataCriada.ToString()));
                 sucesso = dal.insert(kv);
             }
 
             if(_comunicacoesChanged)
             {
-                //TODO : Criar classe comunicacoes para auxiliar esta parte
+                ListaContactos.Comunicacoes.Sync(_comunicacoes,_id);
             }
             if(_empresasChanged)
             {
@@ -188,7 +191,7 @@ namespace ListaContactos
 
         public bool delete()
         {
-            DAL dal = new DAL("Contacto");
+            DAL dal = new DAL("Contato");
             if (dal.exists($"where id = '{_id}'"))
                 return dal.delete($"where id = '{_id}'");
             return false;

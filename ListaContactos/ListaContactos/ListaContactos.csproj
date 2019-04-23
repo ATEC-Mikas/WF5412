@@ -57,6 +57,7 @@
     <Compile Include="libs\Comunicacoes.cs" />
     <Compile Include="libs\Conta.cs" />
     <Compile Include="libs\Contacto.cs" />
+    <Compile Include="libs\Contactos.cs" />
     <Compile Include="libs\Contas.cs" />
     <Compile Include="libs\DAL.cs" />
     <Compile Include="libs\Empresas.cs" />

@@ -16,12 +16,12 @@ namespace ListaContactos
         {
             List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
 
-            OleDbDataReader data = _dal.find("nome_empresa", $"where id_contacto={id}");
+            OleDbDataReader data = _dal.find("tipo_comunicacao,comunicacao", $"where id_contacto='{id}'");
             if (data.HasRows)
             {
                 while (data.Read())
                 {
-                    //kv.Add();
+                    kv.Add(new KeyValuePair<string, string>(GetTipoById(data.GetInt32(0).ToString()), data.GetString(1)));
                 }
                 data.Close();   
             }
@@ -47,7 +47,7 @@ namespace ListaContactos
             return dic;
         }
         
-        public static string GetTipo(string tipo)
+        public static string GetTipoById(string tipo)
         {
             DAL tipodal = new DAL("Tipo_Comunicacao");
             string r=null;
@@ -63,8 +63,56 @@ namespace ListaContactos
 
             return r;
         }
-            
-        
+
+        public static string GetTipoByName(string nome)
+        {
+            DAL tipodal = new DAL("Tipo_Comunicacao");
+            string r = null;
+            OleDbDataReader data = tipodal.find("id_comunicacao", $"where nome='{nome}'");
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    r = data.GetInt32(0).ToString();
+                }
+                data.Close();
+            }
+
+            return r;
+        }
+
+        public static void Sync(List<KeyValuePair<string,string>> kvl, string id)
+        {
+            List<KeyValuePair<string,string>> l = FindById(id);
+
+            foreach (KeyValuePair<string, string> s in l)
+                if (!kvl.Contains(s))
+                    _dal.delete($"where id_contacto='{id}' and tipo_comunicacao={GetTipoByName(s.Key)} and comunicacao='{s.Value}'");
+
+            l = FindById(id);
+
+            foreach (KeyValuePair<string,string> s in kvl)
+            {
+                if (!l.Contains(s))
+                {
+                    List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
+                    kv.Add(new KeyValuePair<string, string>("id_contacto", id));
+                    kv.Add(new KeyValuePair<string, string>("tipo_comunicacao", GetTipoByName(s.Key)));
+                    kv.Add(new KeyValuePair<string, string>("comunicacao", s.Value));
+                    _dal.insert(kv);
+                }
+            }
+        }
+
+        public static void AddTipo(string s)
+        {
+            if(GetTipoByName(s)==null){
+                DAL tipodal = new DAL("Tipo_Comunicacao");
+                List<KeyValuePair<string,string>> kv = new List<KeyValuePair<string, string>>();
+                kv.Add(new KeyValuePair<string, string>("nome", s));
+                tipodal.insert(kv);
+            }
+        }
 
     }
 }
