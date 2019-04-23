@@ -13,6 +13,7 @@ namespace ListaContactos
     public partial class FormContacto : Form
     {
         private Contacto _contacto;
+        private Conta _conta;
 
         public FormContacto()
         {
@@ -21,13 +22,16 @@ namespace ListaContactos
 
         public FormContacto(Conta c) : this()
         {
+            _conta = new Conta(c);
             _contacto = new Contacto(c);
             btnEdit.Text = "Guardar";
+            lblUltimaModific.Text = Modificacoes.UltimaMod(_contacto) ?? "";
             lblCriador.Text = $"Criado por {_contacto.Criador.Nome}";
         }
 
-        public FormContacto(Contacto c)  : this()
+        public FormContacto(Contacto c,Conta conta)  : this()
         {
+            _conta = new Conta(conta);
             _contacto = c;
             txtNome.Text = _contacto.Nome;
             txtTitulo.Text = _contacto.Titulo;
@@ -48,7 +52,7 @@ namespace ListaContactos
             btnEAdd.Enabled = false;
             btnERemov.Enabled = false;
 
-
+            lblUltimaModific.Text = Modificacoes.UltimaMod(_contacto) ?? "";
             lblCriador.Text = $"Criado por {_contacto.Criador.Nome}";
         }
 
@@ -81,7 +85,7 @@ namespace ListaContactos
                     foreach (KeyValuePair<string,string> kv in ListComunicacoes.Items)
                         if (!_contacto.Comunicacoes.Contains(kv))
                             _contacto.AdicionarComunicacao(kv.Key, kv.Value);
-                    if(!_contacto.save())
+                    if(!_contacto.save(_conta))
                     {
                         MessageBox.Show("erro");
                     }
@@ -96,6 +100,7 @@ namespace ListaContactos
                     btnERemov.Enabled = false;
                     btnEdit.Text = "Editar";
                     MessageBox.Show("Salvo com sucesso!");
+                    lblUltimaModific.Text = Modificacoes.UltimaMod(_contacto);
                 }
             }
         }

@@ -44,7 +44,7 @@ namespace ListaContactos
         private void ListContacto_DoubleClick(object sender, EventArgs e)
         {
             Contacto c = ListContacto.SelectedItem as Contacto;
-            using (FormContacto z = new FormContacto(c))
+            using (FormContacto z = new FormContacto(c,_conta))
             {
                 z.ShowDialog();
             }

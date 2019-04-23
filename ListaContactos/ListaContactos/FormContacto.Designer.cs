@@ -231,7 +231,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(512, 9);
+            this.btnDelete.Location = new System.Drawing.Point(700, 38);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(88, 23);
             this.btnDelete.TabIndex = 23;

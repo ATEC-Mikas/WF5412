@@ -143,7 +143,7 @@ namespace ListaContactos
                 return _empresas.Remove(s);
         }
 
-        public bool save()
+        public bool save(Conta c)
         {
             bool sucesso = false;
             //private bool _nomeChanged;
@@ -153,6 +153,7 @@ namespace ListaContactos
             //private bool _comunicacoesChanged;
             //private bool _empresasChanged;
             //private bool _publicoChanged;
+            Modificacoes.Registar(this, c);
             DAL dal = new DAL("Contato");
             List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
             if (_nomeChanged)
