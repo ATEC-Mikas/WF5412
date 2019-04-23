@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormContacto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormContacto.Designer.cs">
+      <DependentUpon>FormContacto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDebug.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,10 +68,31 @@
     <Compile Include="libs\DAL.cs" />
     <Compile Include="libs\Empresas.cs" />
     <Compile Include="libs\Log.cs" />
+    <Compile Include="FormListaContactos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListaContactos.Designer.cs">
+      <DependentUpon>FormListaContactos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormContacto.resx">
+      <DependentUpon>FormContacto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDebug.resx">
       <DependentUpon>FormDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListaContactos.resx">
+      <DependentUpon>FormListaContactos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

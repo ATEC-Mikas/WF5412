@@ -75,7 +75,7 @@ namespace ListaContactos
 
         private bool validarString(string s,int max = 100,int min = 3)
         {
-            return !String.IsNullOrEmpty(s) && !String.IsNullOrWhiteSpace(s) && s.Count() < max && s.Count() > min;
+            return !String.IsNullOrEmpty(s) && !String.IsNullOrWhiteSpace(s) && s.Count() <= max && s.Count() >= min;
         }
 
 
@@ -191,10 +191,22 @@ namespace ListaContactos
 
         public bool delete()
         {
+            bool sucesso = false;
             DAL dal = new DAL("Contato");
+            DAL empresa = new DAL("Contacto_Empresa");
+            DAL comunicacao = new DAL("Comunicacao");
             if (dal.exists($"where id = '{_id}'"))
-                return dal.delete($"where id = '{_id}'");
-            return false;
+                if (dal.delete($"where id = '{_id}'"))
+                    sucesso = true;
+            if (empresa.exists($"where id_contacto='{_id}'"))
+                if (!comunicacao.delete($"where id_contacto='{_id}'") && sucesso)
+                    sucesso = false;
+            if (comunicacao.exists($"where id_contacto='{_id}'"))
+                if (!comunicacao.delete($"where id_contacto='{_id}'") && sucesso)
+                    sucesso = false;
+
+
+            return sucesso;
         }
 
 

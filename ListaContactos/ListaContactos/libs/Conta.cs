@@ -54,7 +54,7 @@ namespace ListaContactos
 
         private bool validarString(string s)
         {
-            return !String.IsNullOrEmpty(s) && !String.IsNullOrWhiteSpace(s) && s.Count()<100 && s.Count() > 3;
+            return !String.IsNullOrEmpty(s) && !String.IsNullOrWhiteSpace(s) && s.Count()<100 && s.Count() > 2;
         }
 
         public bool save()
