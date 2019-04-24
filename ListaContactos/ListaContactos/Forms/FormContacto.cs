@@ -233,8 +233,8 @@ namespace ListaContactos
 
         private void btnCRemov_Click(object sender, EventArgs e)
         {
-            if (ListComunicacoes.SelectedIndex != -1)
-                ListComunicacoes.Items.RemoveAt(ListEmpresas.SelectedIndex+1);
+            if (ListComunicacoes.SelectedItem !=null)
+                ListComunicacoes.Items.Remove(ListComunicacoes.SelectedItem as KeyValuePair<string,string>?);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -56,9 +56,18 @@ namespace ListaContactos
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
+            if(checkFiltros.Checked)
+            {
+                
+
+
+
+            } else
+            {
             ListContacto.Items.Clear();
             foreach (KeyValuePair<string,string> c in Contactos.AllForList(_conta))
                 ListContacto.Items.Add(c);
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -68,6 +77,16 @@ namespace ListaContactos
                 z.ShowDialog();
             }
             btnAtualizar_Click(null, null);
+        }
+
+        private void checkPub_CheckedChanged(object sender, EventArgs e)
+        {
+            checkPublico.Enabled = checkPub.Checked;
+        }
+
+        private void checkFiltros_CheckedChanged(object sender, EventArgs e)
+        {
+            panelFiltros.Visible = !checkFiltros.Checked;
         }
     }
 }

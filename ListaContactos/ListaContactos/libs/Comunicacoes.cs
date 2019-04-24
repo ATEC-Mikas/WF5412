@@ -46,7 +46,23 @@ namespace ListaContactos
             
             return dic;
         }
-        
+
+        public static List<string> FindByComunicacao(string nome)
+        {
+            List<string> list = new List<string>();
+            OleDbDataReader data = _dal.find("id_contacto",$"where comunicacao='%{nome}%'");
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    list.Add(data.GetString(0));
+                }
+            }
+            data.Close();
+            return list;
+        }
+
+
         public static string GetTipoById(string tipo)
         {
             DAL tipodal = new DAL("Tipo_Comunicacao");
