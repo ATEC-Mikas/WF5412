@@ -55,6 +55,7 @@
             this.txtLUser.Name = "txtLUser";
             this.txtLUser.Size = new System.Drawing.Size(151, 20);
             this.txtLUser.TabIndex = 0;
+            this.txtLUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserCheck);
             // 
             // txtLPassword
             // 
@@ -64,6 +65,7 @@
             this.txtLPassword.Size = new System.Drawing.Size(151, 20);
             this.txtLPassword.TabIndex = 1;
             this.txtLPassword.UseSystemPasswordChar = true;
+            this.txtLPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserCheck);
             // 
             // btnLogin
             // 
@@ -93,6 +95,7 @@
             this.txtRConfirmP.Size = new System.Drawing.Size(161, 20);
             this.txtRConfirmP.TabIndex = 6;
             this.txtRConfirmP.UseSystemPasswordChar = true;
+            this.txtRConfirmP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserCheck);
             // 
             // txtRPass
             // 
@@ -102,6 +105,7 @@
             this.txtRPass.Size = new System.Drawing.Size(161, 20);
             this.txtRPass.TabIndex = 5;
             this.txtRPass.UseSystemPasswordChar = true;
+            this.txtRPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserCheck);
             // 
             // txtRNome
             // 
@@ -118,6 +122,7 @@
             this.txtRUser.Name = "txtRUser";
             this.txtRUser.Size = new System.Drawing.Size(161, 20);
             this.txtRUser.TabIndex = 3;
+            this.txtRUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserCheck);
             // 
             // label1
             // 

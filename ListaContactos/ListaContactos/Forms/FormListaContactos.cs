@@ -19,7 +19,7 @@ namespace ListaContactos
             InitializeComponent();
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            ListContacto.DisplayMember = "nome";
+            ListContacto.DisplayMember = "value";
             using (FormLogin z = new FormLogin())
             {
                 z.ShowDialog();
@@ -45,7 +45,7 @@ namespace ListaContactos
         {
             if(ListContacto.SelectedItem!=null)
             {
-                Contacto c = ListContacto.SelectedItem as Contacto;
+                Contacto c = new Contacto(Contactos.FindById((ListContacto.SelectedItem as KeyValuePair<string,string>?).Value.Key));
                 using (FormContacto z = new FormContacto(c,_conta))
                 {
                     z.ShowDialog();
@@ -57,7 +57,7 @@ namespace ListaContactos
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
             ListContacto.Items.Clear();
-            foreach (Contacto c in Contactos.All(_conta))
+            foreach (KeyValuePair<string,string> c in Contactos.AllForList(_conta))
                 ListContacto.Items.Add(c);
         }
 

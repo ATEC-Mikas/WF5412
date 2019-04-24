@@ -9,8 +9,9 @@ namespace ListaContactos
     public static class Seed
     {
         private static Random _random = new Random();
+        private static Log _log = new Log($"seeds/seed.txt");
         
-        public static void Create()
+        public static bool Create()
         {
             for (int i = 0; i < 10; i++)
             {
@@ -20,24 +21,30 @@ namespace ListaContactos
                 teste.Nome = $"Nome Teste{i+1}";
                 teste.Password = "123+qwe";
                 teste.save();
+                _log.EscreverLog($"Conta {teste.User} concluida");
             }
 
-            for (int i = 0; i < 10; i++)
+            foreach(Conta c in Contas.all())
             {
-                foreach(Conta c in Contas.all())
+                for (int i = 0; i < 10; i++)
                 {
                     Contacto t = new Contacto(c);
-                    t.Nome = $"Contacto do {c.User}";
+                    t.Nome = $"Contacto do {c.User} #{i+1}";
                     t.Nif = _random.Next(100000000, 999999999);
                     t.Morada = $"Rua dos sins {i}";
                     t.Publico = i > 5;
                     t.Titulo = $"Mestre dos testes {i}";
 
-                    t.AdicionarEmpresa($"Testes Inc. {i}");
-                    t.AdicionarComunicacao($"teste{1}", $"Teste comunicacao {i}");
+                    for(int y = 0;y<5;y++)
+                    {
+                        t.AdicionarEmpresa($"Testes Inc. {y}");
+                        t.AdicionarComunicacao($"teste tipo #{i+1}", $"Teste comunicacao {y}");
+                    }
                     t.save(c);
+                    _log.EscreverLog($"Contacto {t.Nome} concluido");
                 }
             }
+            return true;
         }
     }
 }

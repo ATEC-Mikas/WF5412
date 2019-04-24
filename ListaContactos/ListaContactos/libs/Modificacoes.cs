@@ -30,8 +30,8 @@ namespace ListaContactos
                 {
                     r = $"Ultima vez modificado por: {data.GetString(0)} [{data.GetDateTime(1)}]";
                 }
-                data.Close();
             }
+            data.Close();
             return r;
         }
     }

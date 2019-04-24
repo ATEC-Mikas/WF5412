@@ -60,6 +60,12 @@ namespace ListaContactos
             btnEAdd.Enabled = false;
             btnERemov.Enabled = false;
 
+            if (_contacto.Criador != _conta)
+            {
+                btnDelete.Enabled = false;
+                btnDelete.Visible = false;
+            }
+
             lblUltimaModific.Text = Modificacoes.UltimaMod(_contacto) ?? "";
             lblCriador.Text = $"Criado por {_contacto.Criador.Nome}";
         }
@@ -72,7 +78,8 @@ namespace ListaContactos
                 txtMorada.Enabled = true;
                 txtNif.Enabled = true;
                 txtTitulo.Enabled = true;
-                checkPublico.Enabled = true;
+                if (_contacto.Criador == _conta)
+                    checkPublico.Enabled = true;
                 btnCAdd.Enabled = true;
                 btnCRemov.Enabled = true;
                 btnEAdd.Enabled = true;

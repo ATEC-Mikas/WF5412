@@ -25,7 +25,24 @@ namespace ListaContactos
         public OleDbDataReader get(string s)
         {
             if (_conexao.State != System.Data.ConnectionState.Open)
-                _conexao.Open();
+            {
+                bool connected;
+                do
+                {
+                    connected = false;
+                    try
+                    {
+                        _conexao.Open();
+                    }
+                    catch (Exception e)
+                    {
+                        _logs.EscreverLog(e.Message);
+                        connected = true;
+                    }
+                    if (connected)
+                        System.Threading.Thread.Sleep(100);
+                } while (connected);
+            }
 
 
             OleDbCommand comando = new OleDbCommand();
@@ -41,8 +58,24 @@ namespace ListaContactos
         public OleDbDataReader find(string s,string a)
         {
             if (_conexao.State != System.Data.ConnectionState.Open)
-                _conexao.Open();
-
+            {
+                bool connected;
+                do
+                {
+                    connected = false;
+                    try
+                    {
+                        _conexao.Open();
+                    }
+                    catch (Exception e)
+                    {
+                        _logs.EscreverLog(e.Message);
+                        connected = true;
+                    }
+                    if (connected)
+                        System.Threading.Thread.Sleep(100);
+                } while (connected);
+            }
 
             OleDbCommand comando = new OleDbCommand();
             comando.CommandText = $"SELECT {s} FROM [{_tabela}] {a}";
@@ -58,7 +91,24 @@ namespace ListaContactos
         {
             bool falhou = false;
             if (_conexao.State != System.Data.ConnectionState.Open)
-                _conexao.Open();
+            {
+                bool connected;
+                do
+                {
+                    connected = false;
+                    try
+                    {
+                        _conexao.Open();
+                    }
+                    catch (Exception e)
+                    {
+                        _logs.EscreverLog(e.Message);
+                        connected = true;
+                    }
+                    if (connected)
+                        System.Threading.Thread.Sleep(100);
+                } while (connected);
+            }
 
             string id = string.Empty;
             string valor = string.Empty;
@@ -99,7 +149,24 @@ namespace ListaContactos
         {
             bool falhou = false;
             if (_conexao.State != System.Data.ConnectionState.Open)
-                _conexao.Open();
+            {
+                bool connected;
+                do
+                {
+                    connected = false;
+                    try
+                    {
+                        _conexao.Open();
+                    }
+                    catch (Exception e)
+                    {
+                        _logs.EscreverLog(e.Message);
+                        connected = true;
+                    }
+                    if (connected)
+                        System.Threading.Thread.Sleep(100);
+                } while (connected);
+            }
 
             string set = string.Empty;
             for (int i = 0; i < kv.Count; i++)
@@ -138,7 +205,24 @@ namespace ListaContactos
         {
             bool falhou = false;
             if (_conexao.State != System.Data.ConnectionState.Open)
-                _conexao.Open();
+            {
+                bool connected;
+                do
+                {
+                    connected = false;
+                    try
+                    {
+                        _conexao.Open();
+                    }
+                    catch (Exception e)
+                    {
+                        _logs.EscreverLog(e.Message);
+                        connected = true;
+                    }
+                    if (connected)
+                        System.Threading.Thread.Sleep(100);
+                } while (connected);
+            }
 
             OleDbCommand comando = new OleDbCommand();
             comando.Connection = _conexao;
@@ -162,7 +246,24 @@ namespace ListaContactos
         public bool exists(string a)
         {
             if (_conexao.State != System.Data.ConnectionState.Open)
-                _conexao.Open();
+            {
+                bool connected;
+                do
+                {
+                    connected = false;
+                    try
+                    {
+                        _conexao.Open();
+                    }
+                    catch (Exception e)
+                    {
+                        _logs.EscreverLog(e.Message);
+                        connected = true;
+                    }
+                    if (connected)
+                        System.Threading.Thread.Sleep(100);
+                } while (connected);
+            }
 
 
             OleDbCommand comando = new OleDbCommand();

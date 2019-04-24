@@ -21,8 +21,8 @@ namespace ListaContactos
                 {
                     contas.Add(new Conta(data.GetString(0), data.GetString(1), data.GetString(2)));
                 }
-                data.Close();
             }
+            data.Close();
             return contas;
         }
 
@@ -36,8 +36,8 @@ namespace ListaContactos
                 {
                     contas.Add(new Conta(data.GetString(0), data.GetString(1), data.GetString(2)));
                 }
-                data.Close();
             }
+            data.Close();
             return contas;
         }
 
@@ -51,9 +51,14 @@ namespace ListaContactos
                 {
                     t = new Conta(data.GetString(0), data.GetString(1), data.GetString(2));
                 }
-                data.Close();
             }
+            data.Close();
             return t;
+        }
+
+        public static bool exists(string user)
+        {
+            return _dal.exists($"where username='{user}'");
         }
     }
 }

@@ -48,34 +48,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormContacto.cs">
+    <Compile Include="Forms\FormContacto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormContacto.Designer.cs">
+    <Compile Include="Forms\FormContacto.Designer.cs">
       <DependentUpon>FormContacto.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDebug.cs">
+    <Compile Include="Forms\FormDebug.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDebug.Designer.cs">
+    <Compile Include="Forms\FormDebug.Designer.cs">
       <DependentUpon>FormDebug.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPopUpAddTipo.cs">
+    <Compile Include="Forms\FormPopUpAddTipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPopUpAddTipo.Designer.cs">
+    <Compile Include="Forms\FormPopUpAddTipo.Designer.cs">
       <DependentUpon>FormPopUpAddTipo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPopUpComunicacao.cs">
+    <Compile Include="Forms\FormPopUpComunicacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPopUpComunicacao.Designer.cs">
+    <Compile Include="Forms\FormPopUpComunicacao.Designer.cs">
       <DependentUpon>FormPopUpComunicacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPopUpEmpresa.cs">
+    <Compile Include="Forms\FormPopUpEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPopUpEmpresa.Designer.cs">
+    <Compile Include="Forms\FormPopUpEmpresa.Designer.cs">
       <DependentUpon>FormPopUpEmpresa.cs</DependentUpon>
     </Compile>
     <Compile Include="libs\Comunicacoes.cs" />
@@ -86,41 +86,41 @@
     <Compile Include="libs\DAL.cs" />
     <Compile Include="libs\Empresas.cs" />
     <Compile Include="libs\Log.cs" />
-    <Compile Include="FormListaContactos.cs">
+    <Compile Include="Forms\FormListaContactos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormListaContactos.Designer.cs">
+    <Compile Include="Forms\FormListaContactos.Designer.cs">
       <DependentUpon>FormListaContactos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="Forms\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="Forms\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="libs\Modificacoes.cs" />
     <Compile Include="libs\Seed.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormContacto.resx">
+    <EmbeddedResource Include="Forms\FormContacto.resx">
       <DependentUpon>FormContacto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDebug.resx">
+    <EmbeddedResource Include="Forms\FormDebug.resx">
       <DependentUpon>FormDebug.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormListaContactos.resx">
+    <EmbeddedResource Include="Forms\FormListaContactos.resx">
       <DependentUpon>FormListaContactos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
+    <EmbeddedResource Include="Forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPopUpAddTipo.resx">
+    <EmbeddedResource Include="Forms\FormPopUpAddTipo.resx">
       <DependentUpon>FormPopUpAddTipo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPopUpComunicacao.resx">
+    <EmbeddedResource Include="Forms\FormPopUpComunicacao.resx">
       <DependentUpon>FormPopUpComunicacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPopUpEmpresa.resx">
+    <EmbeddedResource Include="Forms\FormPopUpEmpresa.resx">
       <DependentUpon>FormPopUpEmpresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

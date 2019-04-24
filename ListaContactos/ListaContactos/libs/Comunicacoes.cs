@@ -23,8 +23,8 @@ namespace ListaContactos
                 {
                     kv.Add(new KeyValuePair<string, string>(GetTipoById(data.GetInt32(0).ToString()), data.GetString(1)));
                 }
-                data.Close();   
             }
+            data.Close();   
 
 
             return kv;
@@ -41,8 +41,8 @@ namespace ListaContactos
                 {
                     dic.Add(data.GetInt32(0).ToString(),data.GetString(1));
                 }
-                data.Close();
             }
+            data.Close();
             
             return dic;
         }
@@ -58,8 +58,8 @@ namespace ListaContactos
                 {
                     r=data.GetString(0);
                 }
-                data.Close();
             }
+            data.Close();
 
             return r;
         }
@@ -75,8 +75,8 @@ namespace ListaContactos
                 {
                     r = data.GetInt32(0).ToString();
                 }
-                data.Close();
             }
+            data.Close();
 
             return r;
         }

@@ -22,8 +22,8 @@ namespace ListaContactos
                 {
                     l.Add(data.GetString(0));
                 }
-                data.Close();
             }
+            data.Close();
             return l;
         }
         public static void Sync(List<string> l,string id)
