@@ -22,7 +22,7 @@ namespace ListaContactos
 
         public static string UltimaMod(Contacto c)
         {
-            OleDbDataReader data = _dal.find("id_modificador,Data", $"where id_contacto='{c.ID}'");
+            OleDbDataReader data = _dal.find("top 1 id_modificador,Data", $"where id_contacto='{c.ID}' order by Data desc");
             string r = null;
             if (data.HasRows)
             {

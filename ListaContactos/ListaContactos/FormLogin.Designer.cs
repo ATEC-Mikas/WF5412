@@ -45,6 +45,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnSeed = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtLUser
@@ -79,7 +80,7 @@
             this.btnRegistar.Location = new System.Drawing.Point(446, 239);
             this.btnRegistar.Name = "btnRegistar";
             this.btnRegistar.Size = new System.Drawing.Size(161, 23);
-            this.btnRegistar.TabIndex = 3;
+            this.btnRegistar.TabIndex = 7;
             this.btnRegistar.Text = "Registar";
             this.btnRegistar.UseVisualStyleBackColor = true;
             this.btnRegistar.Click += new System.EventHandler(this.btnRegistar_Click);
@@ -90,7 +91,7 @@
             this.txtRConfirmP.MaxLength = 90;
             this.txtRConfirmP.Name = "txtRConfirmP";
             this.txtRConfirmP.Size = new System.Drawing.Size(161, 20);
-            this.txtRConfirmP.TabIndex = 5;
+            this.txtRConfirmP.TabIndex = 6;
             this.txtRConfirmP.UseSystemPasswordChar = true;
             // 
             // txtRPass
@@ -99,7 +100,7 @@
             this.txtRPass.MaxLength = 90;
             this.txtRPass.Name = "txtRPass";
             this.txtRPass.Size = new System.Drawing.Size(161, 20);
-            this.txtRPass.TabIndex = 4;
+            this.txtRPass.TabIndex = 5;
             this.txtRPass.UseSystemPasswordChar = true;
             // 
             // txtRNome
@@ -108,7 +109,7 @@
             this.txtRNome.MaxLength = 90;
             this.txtRNome.Name = "txtRNome";
             this.txtRNome.Size = new System.Drawing.Size(161, 20);
-            this.txtRNome.TabIndex = 7;
+            this.txtRNome.TabIndex = 4;
             // 
             // txtRUser
             // 
@@ -116,7 +117,7 @@
             this.txtRUser.MaxLength = 90;
             this.txtRUser.Name = "txtRUser";
             this.txtRUser.Size = new System.Drawing.Size(161, 20);
-            this.txtRUser.TabIndex = 6;
+            this.txtRUser.TabIndex = 3;
             // 
             // label1
             // 
@@ -193,11 +194,22 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Registar";
             // 
+            // btnSeed
+            // 
+            this.btnSeed.Location = new System.Drawing.Point(12, 254);
+            this.btnSeed.Name = "btnSeed";
+            this.btnSeed.Size = new System.Drawing.Size(75, 23);
+            this.btnSeed.TabIndex = 16;
+            this.btnSeed.Text = "[Dev] Seed";
+            this.btnSeed.UseVisualStyleBackColor = true;
+            this.btnSeed.Click += new System.EventHandler(this.btnSeed_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 289);
+            this.Controls.Add(this.btnSeed);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -241,5 +253,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnSeed;
     }
 }

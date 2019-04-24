@@ -67,5 +67,10 @@ namespace ListaContactos
                 btnRegistar.Enabled = false;
             }
         }
+
+        private void btnSeed_Click(object sender, EventArgs e)
+        {
+            Seed.Create();
+        }
     }
 }

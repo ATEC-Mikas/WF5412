@@ -86,5 +86,10 @@ namespace ListaContactos
             return contactos;
         }
 
+        public static bool Existe(string id)
+        {
+            return _dal.exists($"where id='{id}'");
+        }
+
     }
 }

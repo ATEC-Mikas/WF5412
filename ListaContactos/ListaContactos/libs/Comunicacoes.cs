@@ -39,7 +39,7 @@ namespace ListaContactos
             {
                 while(data.Read())
                 {
-                    dic.Add(data.GetString(0),data.GetString(1));
+                    dic.Add(data.GetInt32(0).ToString(),data.GetString(1));
                 }
                 data.Close();
             }

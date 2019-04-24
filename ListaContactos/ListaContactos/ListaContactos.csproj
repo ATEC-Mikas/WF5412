@@ -60,6 +60,24 @@
     <Compile Include="FormDebug.Designer.cs">
       <DependentUpon>FormDebug.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPopUpAddTipo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopUpAddTipo.Designer.cs">
+      <DependentUpon>FormPopUpAddTipo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpComunicacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopUpComunicacao.Designer.cs">
+      <DependentUpon>FormPopUpComunicacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPopUpEmpresa.Designer.cs">
+      <DependentUpon>FormPopUpEmpresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="libs\Comunicacoes.cs" />
     <Compile Include="libs\Conta.cs" />
     <Compile Include="libs\Contacto.cs" />
@@ -81,6 +99,7 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="libs\Modificacoes.cs" />
+    <Compile Include="libs\Seed.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormContacto.resx">
@@ -94,6 +113,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpAddTipo.resx">
+      <DependentUpon>FormPopUpAddTipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpComunicacao.resx">
+      <DependentUpon>FormPopUpComunicacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpEmpresa.resx">
+      <DependentUpon>FormPopUpEmpresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

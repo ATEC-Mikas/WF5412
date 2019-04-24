@@ -43,12 +43,15 @@ namespace ListaContactos
 
         private void ListContacto_DoubleClick(object sender, EventArgs e)
         {
-            Contacto c = ListContacto.SelectedItem as Contacto;
-            using (FormContacto z = new FormContacto(c,_conta))
+            if(ListContacto.SelectedItem!=null)
             {
-                z.ShowDialog();
+                Contacto c = ListContacto.SelectedItem as Contacto;
+                using (FormContacto z = new FormContacto(c,_conta))
+                {
+                    z.ShowDialog();
+                }
+                btnAtualizar_Click(null,null);
             }
-            btnAtualizar_Click(null,null);
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)

@@ -50,6 +50,10 @@
             this.lblUltimaModific = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lblCriador = new System.Windows.Forms.Label();
+            this.grpboxDelete = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.grpboxDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtNome
@@ -118,6 +122,7 @@
             this.btnERemov.TabIndex = 10;
             this.btnERemov.Text = "Remover";
             this.btnERemov.UseVisualStyleBackColor = true;
+            this.btnERemov.Click += new System.EventHandler(this.btnERemov_Click);
             // 
             // btnEAdd
             // 
@@ -127,6 +132,7 @@
             this.btnEAdd.TabIndex = 11;
             this.btnEAdd.Text = "Adicionar";
             this.btnEAdd.UseVisualStyleBackColor = true;
+            this.btnEAdd.Click += new System.EventHandler(this.btnEAdd_Click);
             // 
             // btnCAdd
             // 
@@ -136,6 +142,7 @@
             this.btnCAdd.TabIndex = 13;
             this.btnCAdd.Text = "Adicionar";
             this.btnCAdd.UseVisualStyleBackColor = true;
+            this.btnCAdd.Click += new System.EventHandler(this.btnCAdd_Click);
             // 
             // btnCRemov
             // 
@@ -145,6 +152,7 @@
             this.btnCRemov.TabIndex = 12;
             this.btnCRemov.Text = "Remover";
             this.btnCRemov.UseVisualStyleBackColor = true;
+            this.btnCRemov.Click += new System.EventHandler(this.btnCRemov_Click);
             // 
             // label2
             // 
@@ -244,15 +252,45 @@
             this.lblCriador.AutoSize = true;
             this.lblCriador.Location = new System.Drawing.Point(417, 287);
             this.lblCriador.Name = "lblCriador";
-            this.lblCriador.Size = new System.Drawing.Size(35, 13);
+            this.lblCriador.Size = new System.Drawing.Size(59, 13);
             this.lblCriador.TabIndex = 24;
-            this.lblCriador.Text = "label1";
+            this.lblCriador.Text = "LBLCriador";
+            // 
+            // grpboxDelete
+            // 
+            this.grpboxDelete.Controls.Add(this.label1);
+            this.grpboxDelete.Location = new System.Drawing.Point(2, 9);
+            this.grpboxDelete.Name = "grpboxDelete";
+            this.grpboxDelete.Size = new System.Drawing.Size(804, 310);
+            this.grpboxDelete.TabIndex = 25;
+            this.grpboxDelete.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.label1.Location = new System.Drawing.Point(232, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(341, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "A apagar o Contacto...";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(606, 38);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(88, 23);
+            this.btnCancelar.TabIndex = 26;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FormContacto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 313);
+            this.Controls.Add(this.grpboxDelete);
             this.Controls.Add(this.lblCriador);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblUltimaModific);
@@ -275,8 +313,11 @@
             this.Controls.Add(this.txtMorada);
             this.Controls.Add(this.txtNif);
             this.Controls.Add(this.txtNome);
+            this.Controls.Add(this.btnCancelar);
             this.Name = "FormContacto";
             this.Text = "FormContacto";
+            this.grpboxDelete.ResumeLayout(false);
+            this.grpboxDelete.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +346,8 @@
         private System.Windows.Forms.Label lblUltimaModific;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblCriador;
+        private System.Windows.Forms.GroupBox grpboxDelete;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
