@@ -44,7 +44,10 @@ namespace ListaContactos
             txtNome.Text = _contacto.Nome;
             txtTitulo.Text = _contacto.Titulo;
             txtMorada.Text = _contacto.Morada;
-            txtNif.Text = _contacto.Nif.ToString();
+            if (_contacto.Nif != -1)
+                txtNif.Text = _contacto.Nif.ToString();
+            else
+                txtNif.Text = string.Empty;
             checkPublico.Checked = _contacto.Publico;
             foreach (string s in Empresas.FindById(_contacto.ID))
                 ListEmpresas.Items.Add(s);
@@ -60,7 +63,7 @@ namespace ListaContactos
             btnEAdd.Enabled = false;
             btnERemov.Enabled = false;
 
-            if (_contacto.Criador != _conta)
+            if (_contacto.Criador.User != _conta.User)
             {
                 btnDelete.Enabled = false;
                 btnDelete.Visible = false;
@@ -78,7 +81,7 @@ namespace ListaContactos
                 txtMorada.Enabled = true;
                 txtNif.Enabled = true;
                 txtTitulo.Enabled = true;
-                if (_contacto.Criador == _conta)
+                if (_contacto.Criador.User == _conta.User)
                     checkPublico.Enabled = true;
                 btnCAdd.Enabled = true;
                 btnCRemov.Enabled = true;
@@ -93,7 +96,12 @@ namespace ListaContactos
                 {
                     _contacto.Nome = txtNome.Text;
                     _contacto.Morada = txtMorada.Text;
-                    _contacto.Nif = int.Parse(txtNif.Text);
+                    if(int.TryParse(txtNif.Text, out int i))
+                        _contacto.Nif = int.Parse(txtNif.Text);
+                    else
+                    {
+                        _contacto.Nif = -1;
+                    }
                     _contacto.Titulo = txtTitulo.Text;
                     _contacto.Publico = checkPublico.Checked;
                     AtualizarEmpresas();
@@ -147,23 +155,34 @@ namespace ListaContactos
 
         private bool validarString(string s)
         {
-            return !string.IsNullOrWhiteSpace(s) || !string.IsNullOrEmpty(s);
+            return !string.IsNullOrWhiteSpace(s) && !string.IsNullOrEmpty(s);
         }
-        private bool validarNif(int i)
+
+        private bool validarNif(string s)
         {
-            return i > 100000000 && i < 999999999;
+            int i = 0;
+            if (int.TryParse(txtNif.Text, out i))
+                if (!(i > 100000000 && i < 999999999))
+                {
+                    MessageBox.Show("Nif incorreto");
+                    return false;
+                }
+                else
+                    return true;
+            else
+                return string.IsNullOrEmpty(s) || string.IsNullOrWhiteSpace(s);
         }
 
         private bool validarEntradas()
         {
-            if(int.TryParse(txtNif.Text,out int i))
-                return validarString(txtMorada.Text) && validarString(txtNome.Text) && validarString(txtTitulo.Text) && validarNif(int.Parse(txtNif.Text));
-            return false;
+            if (!validarString(txtNome.Text) || txtNome.Text.Count()<3)
+                MessageBox.Show("Tem de ter um Nome com pelo menos três letras");
+            return validarNif(txtNif.Text) && validarString(txtNome.Text) && txtNome.Text.Count() >= 3;
         }
 
         private void txtNif_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar);
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar!=(char)0x08;
         }
 
         private void btnFechar_Click(object sender, EventArgs e)
@@ -223,10 +242,15 @@ namespace ListaContactos
             txtNome.Text = _contactoBackup.Nome;
             txtTitulo.Text = _contactoBackup.Titulo;
             txtMorada.Text = _contactoBackup.Morada;
-            txtNif.Text = _contactoBackup.Nif.ToString();
+            if (_contactoBackup.Nif != -1)
+                txtNif.Text = _contactoBackup.Nif.ToString();
+            else
+                txtNif.Text = string.Empty;
             checkPublico.Checked = _contactoBackup.Publico;
+            ListEmpresas.Items.Clear();
             foreach (string s in Empresas.FindById(_contactoBackup.ID))
                 ListEmpresas.Items.Add(s);
+            ListComunicacoes.Items.Clear();
             foreach (KeyValuePair<string, string> kv in Comunicacoes.FindById(_contactoBackup.ID))
                 ListComunicacoes.Items.Add(kv);
             txtNome.Enabled = false;
@@ -238,6 +262,9 @@ namespace ListaContactos
             btnCRemov.Enabled = false;
             btnEAdd.Enabled = false;
             btnERemov.Enabled = false;
+            btnEdit.Text = "Editar";
+            btnCancelar.Enabled = false;
+            btnCancelar.Visible = false;
             _contacto = new Contacto(_contactoBackup);
         }
     }

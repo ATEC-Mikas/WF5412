@@ -83,7 +83,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormListaContactos";
-            this.Text = "ListaContactos";
+            this.Text = "Lista de Contactos";
             this.Load += new System.EventHandler(this.FormListaContactos_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

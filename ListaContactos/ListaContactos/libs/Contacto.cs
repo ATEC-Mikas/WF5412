@@ -86,9 +86,9 @@ namespace ListaContactos
 
         public string ID { get { return _id; } }
         public string Nome { get { return _nome; } set { if (validarString(value)) { _nome = value; _nomeChanged = true; } } }
-        public string Titulo { get { return _titulo; } set { if (validarString(value)) { _titulo = value; _tituloChanged = true; } } }
-        public string Morada { get { return _morada; } set { if (validarString(value)) { _morada = value; _moradaChanged = true; } } }
-        public int Nif { get { return _nif; } set { if (value > 100000000 && value < 999999999) { _nif = value; _nifChanged = true; } } }
+        public string Titulo { get { return _titulo; } set { _titulo = value; _tituloChanged = true; } } 
+        public string Morada { get { return _morada; } set { _morada = value; _moradaChanged = true; } } 
+        public int Nif { get { return _nif; } set { if ((value > 100000000 && value < 999999999) || value==-1) { _nif = value; _nifChanged = true; } } }
         public Conta Criador { get { return _criador; } }
         public DateTime DataCriada { get { return _dataCriada; } }
         public List<KeyValuePair<string,string>> Comunicacoes { get { return new List<KeyValuePair<string, string>>(_comunicacoes); } }

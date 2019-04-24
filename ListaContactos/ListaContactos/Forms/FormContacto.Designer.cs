@@ -259,7 +259,7 @@
             // grpboxDelete
             // 
             this.grpboxDelete.Controls.Add(this.label1);
-            this.grpboxDelete.Location = new System.Drawing.Point(2, 9);
+            this.grpboxDelete.Location = new System.Drawing.Point(3, 9);
             this.grpboxDelete.Name = "grpboxDelete";
             this.grpboxDelete.Size = new System.Drawing.Size(804, 310);
             this.grpboxDelete.TabIndex = 25;
@@ -315,7 +315,7 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.btnCancelar);
             this.Name = "FormContacto";
-            this.Text = "FormContacto";
+            this.Text = "Contacto";
             this.grpboxDelete.ResumeLayout(false);
             this.grpboxDelete.PerformLayout();
             this.ResumeLayout(false);
