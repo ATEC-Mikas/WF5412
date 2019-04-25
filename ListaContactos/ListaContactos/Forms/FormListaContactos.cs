@@ -53,16 +53,36 @@ namespace ListaContactos
                 btnAtualizar_Click(null,null);
             }
         }
+        private bool validarString(string s)
+        {
+            return !string.IsNullOrEmpty(s) && !string.IsNullOrWhiteSpace(s);
+        }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
             if(checkFiltros.Checked)
             {
-                
+                List<KeyValuePair<string, string>> filtros = new List<KeyValuePair<string, string>>();
+                if (validarString(txtNome.Text))
+                    filtros.Add(new KeyValuePair<string, string>("nome", txtNome.Text));
+                if (validarString(txtTitulo.Text))
+                    filtros.Add(new KeyValuePair<string, string>("titulo", txtTitulo.Text));
+                if (validarString(txtMorada.Text))
+                    filtros.Add(new KeyValuePair<string, string>("morada", txtMorada.Text));
+                if(validarString(txtNif.Text))
+                    filtros.Add(new KeyValuePair<string, string>("nif", txtNif.Text));
+                if (validarString(txtComunicacao.Text))
+                    filtros.Add(new KeyValuePair<string, string>("comunicacao", txtComunicacao.Text));
+                if (validarString(txtEmpresa.Text))
+                    filtros.Add(new KeyValuePair<string, string>("empresa", txtEmpresa.Text));
+                if(checkPub.Checked)
+                    filtros.Add(new KeyValuePair<string, string>("publico", checkPublico.Checked.ToString()));
 
-
-
-            } else
+                ListContacto.Items.Clear();
+                foreach (KeyValuePair<string, string> c in Contactos.AllForListFiltered(_conta, filtros))
+                    ListContacto.Items.Add(c);
+            }
+            else
             {
             ListContacto.Items.Clear();
             foreach (KeyValuePair<string,string> c in Contactos.AllForList(_conta))
@@ -87,6 +107,11 @@ namespace ListaContactos
         private void checkFiltros_CheckedChanged(object sender, EventArgs e)
         {
             panelFiltros.Visible = !checkFiltros.Checked;
+        }
+
+        private void Nif_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != (char)0x08;
         }
     }
 }

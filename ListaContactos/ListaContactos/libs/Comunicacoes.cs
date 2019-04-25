@@ -50,7 +50,7 @@ namespace ListaContactos
         public static List<string> FindByComunicacao(string nome)
         {
             List<string> list = new List<string>();
-            OleDbDataReader data = _dal.find("id_contacto",$"where comunicacao='%{nome}%'");
+            OleDbDataReader data = _dal.find("id_contacto",$"where comunicacao like '%{nome}%'");
             if (data.HasRows)
             {
                 while (data.Read())

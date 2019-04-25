@@ -33,14 +33,14 @@
             this.ListContacto = new System.Windows.Forms.ListBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.checkFiltros = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.txtTitulo = new System.Windows.Forms.TextBox();
+            this.txtMorada = new System.Windows.Forms.TextBox();
             this.checkPublico = new System.Windows.Forms.CheckBox();
             this.checkPub = new System.Windows.Forms.CheckBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtNif = new System.Windows.Forms.TextBox();
+            this.txtEmpresa = new System.Windows.Forms.TextBox();
+            this.txtComunicacao = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -100,26 +100,26 @@
             this.checkFiltros.UseVisualStyleBackColor = true;
             this.checkFiltros.CheckedChanged += new System.EventHandler(this.checkFiltros_CheckedChanged);
             // 
-            // textBox1
+            // txtNome
             // 
-            this.textBox1.Location = new System.Drawing.Point(409, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 5;
+            this.txtNome.Location = new System.Drawing.Point(409, 56);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(100, 20);
+            this.txtNome.TabIndex = 5;
             // 
-            // textBox2
+            // txtTitulo
             // 
-            this.textBox2.Location = new System.Drawing.Point(409, 82);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 6;
+            this.txtTitulo.Location = new System.Drawing.Point(409, 82);
+            this.txtTitulo.Name = "txtTitulo";
+            this.txtTitulo.Size = new System.Drawing.Size(100, 20);
+            this.txtTitulo.TabIndex = 6;
             // 
-            // textBox3
+            // txtMorada
             // 
-            this.textBox3.Location = new System.Drawing.Point(409, 108);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 7;
+            this.txtMorada.Location = new System.Drawing.Point(409, 108);
+            this.txtMorada.Name = "txtMorada";
+            this.txtMorada.Size = new System.Drawing.Size(100, 20);
+            this.txtMorada.TabIndex = 7;
             // 
             // checkPublico
             // 
@@ -142,26 +142,27 @@
             this.checkPub.UseVisualStyleBackColor = true;
             this.checkPub.CheckedChanged += new System.EventHandler(this.checkPub_CheckedChanged);
             // 
-            // textBox4
+            // txtNif
             // 
-            this.textBox4.Location = new System.Drawing.Point(409, 134);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 10;
+            this.txtNif.Location = new System.Drawing.Point(409, 134);
+            this.txtNif.Name = "txtNif";
+            this.txtNif.Size = new System.Drawing.Size(100, 20);
+            this.txtNif.TabIndex = 10;
+            this.txtNif.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Nif_KeyPress);
             // 
-            // textBox5
+            // txtEmpresa
             // 
-            this.textBox5.Location = new System.Drawing.Point(409, 192);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 11;
+            this.txtEmpresa.Location = new System.Drawing.Point(409, 192);
+            this.txtEmpresa.Name = "txtEmpresa";
+            this.txtEmpresa.Size = new System.Drawing.Size(100, 20);
+            this.txtEmpresa.TabIndex = 11;
             // 
-            // textBox6
+            // txtComunicacao
             // 
-            this.textBox6.Location = new System.Drawing.Point(409, 234);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 12;
+            this.txtComunicacao.Location = new System.Drawing.Point(409, 234);
+            this.txtComunicacao.Name = "txtComunicacao";
+            this.txtComunicacao.Size = new System.Drawing.Size(100, 20);
+            this.txtComunicacao.TabIndex = 12;
             // 
             // label2
             // 
@@ -219,9 +220,9 @@
             // 
             // panelFiltros
             // 
-            this.panelFiltros.Location = new System.Drawing.Point(107, 134);
+            this.panelFiltros.Location = new System.Drawing.Point(328, 50);
             this.panelFiltros.Name = "panelFiltros";
-            this.panelFiltros.Size = new System.Drawing.Size(192, 204);
+            this.panelFiltros.Size = new System.Drawing.Size(192, 246);
             this.panelFiltros.TabIndex = 19;
             // 
             // btnProcurar
@@ -239,7 +240,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 519);
-            this.Controls.Add(this.btnProcurar);
             this.Controls.Add(this.panelFiltros);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -247,19 +247,20 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtComunicacao);
+            this.Controls.Add(this.txtEmpresa);
+            this.Controls.Add(this.txtNif);
             this.Controls.Add(this.checkPub);
             this.Controls.Add(this.checkPublico);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMorada);
+            this.Controls.Add(this.txtTitulo);
+            this.Controls.Add(this.txtNome);
             this.Controls.Add(this.checkFiltros);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.ListContacto);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnProcurar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormListaContactos";
             this.Text = "Lista de Contactos";
@@ -276,14 +277,14 @@
         private System.Windows.Forms.ListBox ListContacto;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.CheckBox checkFiltros;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.TextBox txtTitulo;
+        private System.Windows.Forms.TextBox txtMorada;
         private System.Windows.Forms.CheckBox checkPublico;
         private System.Windows.Forms.CheckBox checkPub;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtNif;
+        private System.Windows.Forms.TextBox txtEmpresa;
+        private System.Windows.Forms.TextBox txtComunicacao;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

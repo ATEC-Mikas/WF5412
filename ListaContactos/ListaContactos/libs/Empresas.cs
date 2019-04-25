@@ -49,7 +49,7 @@ namespace ListaContactos
         public static List<string> FindByEmpresa(string nome)
         {
             List<string> list = new List<string>();
-            OleDbDataReader data = _dal.find("id_contacto", $"where nome_empresa='%{nome}%'");
+            OleDbDataReader data = _dal.find("id_contacto", $"where nome_empresa like '%{nome}%'"); 
             if (data.HasRows)
             {
                 while (data.Read())

@@ -67,52 +67,71 @@ namespace ListaContactos
 
         public static List<KeyValuePair<string, string>> AllForListFiltered(Conta c,List<KeyValuePair<string,string>> filtros)
         {
+            bool publico = false;
+            bool comunicacao = false;
+            bool empresa = false;
+
             string fpublico = null;
             List<string> idsComunicacoes = new List<string>();
-            List<string> idsComunicacoes = new List<string>();
+            List<string> idsEmpresas = new List<string>();
+            List<string> idsContactos = new List<string>();
             List<KeyValuePair<string, string>> contactos = new List<KeyValuePair<string, string>>();
+            List<KeyValuePair<string, string>> _filtros = new List<KeyValuePair<string, string>>(filtros);
+            List<KeyValuePair<string, string>> discarding = new List<KeyValuePair<string, string>>();
 
-            foreach (KeyValuePair<string, string> kv in filtros)
+            foreach(KeyValuePair<string, string> kv in _filtros)
             {
                 if (kv.Key == "publico")
                 {
                     fpublico = kv.Value;
-                    filtros.Remove(kv);
+                    discarding.Add(kv);
+                    publico = true;
                 }
                 if(kv.Key=="comunicacao")
                 {
                     foreach (string s in Comunicacoes.FindByComunicacao(kv.Value))
-                        if (!ids.Contains(s))
-                            ids.Add(s);
-                    filtros.Remove(kv);
+                        if (!idsComunicacoes.Contains(s))
+                            idsComunicacoes.Add(s);
+                    discarding.Add(kv);
+                    comunicacao = true;
                 }
                 if (kv.Key == "empresa")
                 {
                     foreach (string s in Empresas.FindByEmpresa(kv.Value))
-                        if (!ids.Contains(s))
-                            ids.Add(s);
-                    filtros.Remove(kv);
+                        if (!idsEmpresas.Contains(s))
+                            idsEmpresas.Add(s);
+                    discarding.Add(kv);
+                    empresa = true;
                 }
+            }
+            
+
+            foreach(KeyValuePair<string,string> kv in discarding)
+            {
+                _filtros.Remove(kv);
             }
 
             string query = string.Empty;
-            string values = string.Empty;
+            string values = "and ";
             if (fpublico!=null)
             {
-                if(fpublico=="true")
+                if(fpublico=="True")
                     query = $"where publico=true";
-                if(fpublico=="false")
-                    query = $"where criador='{c.User}' publico=false";
+                if(fpublico=="False")
+                    query = $"where criador='{c.User}' and publico=false";
             }
-            for(int i=0;i<filtros.Count;i++)
+            for(int i=0;i<_filtros.Count;i++)
             {
-                    if (filtros[i].Key == "nif")
-                        values += $"nif={filtros[i].Value}";
+                    if (_filtros[i].Key == "nif")
+                        values += $"nif={_filtros[i].Value}";
                     else
-                        values += $"{filtros[i].Key}='%{filtros[i].Value}%'";
-                    if (i != filtros.Count - 1)
+                        values += $"{_filtros[i].Key} like '%{_filtros[i].Value}%'";
+                    if (i != _filtros.Count - 1)
                         values += " and ";
             }
+
+            if (values == "and ")
+                values = string.Empty;
 
             if(fpublico==null)
             {
@@ -121,7 +140,7 @@ namespace ListaContactos
                 {
                     while (data.Read())
                     {
-                        contactos.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetString(1)));
+                        idsContactos.Add(data.GetString(0));
                     }
                 }
                 data.Close();
@@ -131,7 +150,7 @@ namespace ListaContactos
                 {
                     while (data.Read())
                     {
-                        contactos.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetString(1)));
+                        idsContactos.Add(data.GetString(0));
                     }
                 }
 
@@ -140,7 +159,7 @@ namespace ListaContactos
                 {
                     while (data.Read())
                     {
-                        contactos.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetString(1)));
+                        idsContactos.Add(data.GetString(0));
                     }
                 }
                 data.Close();
@@ -151,11 +170,56 @@ namespace ListaContactos
                 {
                     while (data.Read())
                     {
+                        idsContactos.Add(data.GetString(0));
+                    }
+                }
+                data.Close();
+            }
+
+            List<string> r = new List<string>(idsContactos);
+
+            if(comunicacao)
+            {
+                if (idsComunicacoes.Count > 0)
+                {
+                    foreach (string id in idsContactos)
+                        if (!idsComunicacoes.Contains(id))
+                            r.Remove(id);
+                }
+                else
+                {
+                    r.Clear();
+                }
+            }
+            if(empresa)
+            {
+                if(idsEmpresas.Count>0)
+                {
+                    foreach (string id in idsContactos)
+                        if (!idsEmpresas.Contains(id))
+                            r.Remove(id);
+                }
+                else
+                {
+                    r.Clear();
+                }
+            }
+
+
+
+            foreach (string s in r)
+            {
+                OleDbDataReader data = _dal.find("id,nome", $"where id='{s}'");
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
                         contactos.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetString(1)));
                     }
                 }
                 data.Close();
             }
+            
             return contactos;
         }
 
