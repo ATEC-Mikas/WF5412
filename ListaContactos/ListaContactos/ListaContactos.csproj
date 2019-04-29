@@ -54,12 +54,6 @@
     <Compile Include="Forms\FormContacto.Designer.cs">
       <DependentUpon>FormContacto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormDebug.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormDebug.Designer.cs">
-      <DependentUpon>FormDebug.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormPopUpAddTipo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,9 +98,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FormContacto.resx">
       <DependentUpon>FormContacto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormDebug.resx">
-      <DependentUpon>FormDebug.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormListaContactos.resx">
       <DependentUpon>FormListaContactos.cs</DependentUpon>

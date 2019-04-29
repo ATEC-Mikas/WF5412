@@ -46,6 +46,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnSeed = new System.Windows.Forms.Button();
+            this.labelR = new System.Windows.Forms.Label();
+            this.panelSeed = new System.Windows.Forms.Panel();
+            this.panelSeed.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtLUser
@@ -209,11 +212,30 @@
             this.btnSeed.UseVisualStyleBackColor = true;
             this.btnSeed.Click += new System.EventHandler(this.btnSeed_Click);
             // 
+            // labelR
+            // 
+            this.labelR.AutoSize = true;
+            this.labelR.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.labelR.Location = new System.Drawing.Point(170, 121);
+            this.labelR.Name = "labelR";
+            this.labelR.Size = new System.Drawing.Size(402, 39);
+            this.labelR.TabIndex = 0;
+            this.labelR.Text = "Seeds a serem criadas...";
+            // 
+            // panelSeed
+            // 
+            this.panelSeed.Controls.Add(this.labelR);
+            this.panelSeed.Location = new System.Drawing.Point(0, 0);
+            this.panelSeed.Name = "panelSeed";
+            this.panelSeed.Size = new System.Drawing.Size(714, 292);
+            this.panelSeed.TabIndex = 17;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 289);
+            this.Controls.Add(this.panelSeed);
             this.Controls.Add(this.btnSeed);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -234,6 +256,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormLogin";
             this.Text = "Login";
+            this.panelSeed.ResumeLayout(false);
+            this.panelSeed.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,5 +283,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnSeed;
+        private System.Windows.Forms.Label labelR;
+        private System.Windows.Forms.Panel panelSeed;
     }
 }

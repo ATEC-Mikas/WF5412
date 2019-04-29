@@ -15,16 +15,17 @@ namespace ListaContactos
         private Contacto _contacto;
         private Contacto _contactoBackup;
         private Conta _conta;
+        private bool _deleted;
 
         public FormContacto()
         {
             InitializeComponent();
-            grpboxDelete.Visible = false;
-            grpboxDelete.Enabled = false;
+            panelBlock.Visible = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             btnCancelar.Visible = false;
             btnCancelar.Enabled = false;
+            _deleted = false;
         }
 
         public FormContacto(Conta c) : this()
@@ -195,8 +196,10 @@ namespace ListaContactos
             if(MessageBox.Show("Tem a Certeza?", "Confirmação",MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
             {
                 _contacto.delete();
-                grpboxDelete.Visible = true;
-                grpboxDelete.Enabled = true;
+                panelBlock.Show();
+                panelBlock.Update();
+                labelR.Text = "A apagar o contacto...";
+                _deleted = true;
                 while(Contactos.Existe(_contacto.ID))
                     System.Threading.Thread.Sleep(1000);
                 this.Close();
@@ -266,6 +269,18 @@ namespace ListaContactos
             btnCancelar.Enabled = false;
             btnCancelar.Visible = false;
             _contacto = new Contacto(_contactoBackup);
+        }
+
+        private void FormContacto_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(!_deleted)
+            {
+                panelBlock.Show();
+                panelBlock.Update();
+                labelR.Text = "A guardar alterações...";
+                while (!Contactos.Existe(_contacto.ID))
+                    System.Threading.Thread.Sleep(1000);
+            }
         }
     }
 }

@@ -18,8 +18,8 @@ namespace ListaContactos
             _conexao = new OleDbConnection();
             _conexao.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db\\listacontactos.mdb;";
             _tabela = tabela;
-            _logs = new Log($"logs/{_tabela}.txt");
-            _querylogs = new Log($"logs/{_tabela}-queries.txt");
+            _logs = new Log($"logs/Erros/{_tabela}.txt");
+            _querylogs = new Log($"logs/Queries/{_tabela}.txt");
         }
 
         public OleDbDataReader get(string s)

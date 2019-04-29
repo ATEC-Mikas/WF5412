@@ -50,10 +50,10 @@
             this.lblUltimaModific = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lblCriador = new System.Windows.Forms.Label();
-            this.grpboxDelete = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.grpboxDelete.SuspendLayout();
+            this.panelBlock = new System.Windows.Forms.Panel();
+            this.labelR = new System.Windows.Forms.Label();
+            this.panelBlock.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtNome
@@ -256,25 +256,6 @@
             this.lblCriador.TabIndex = 24;
             this.lblCriador.Text = "LBLCriador";
             // 
-            // grpboxDelete
-            // 
-            this.grpboxDelete.Controls.Add(this.label1);
-            this.grpboxDelete.Location = new System.Drawing.Point(3, 9);
-            this.grpboxDelete.Name = "grpboxDelete";
-            this.grpboxDelete.Size = new System.Drawing.Size(804, 310);
-            this.grpboxDelete.TabIndex = 25;
-            this.grpboxDelete.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.label1.Location = new System.Drawing.Point(232, 124);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(341, 37);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "A apagar o Contacto...";
-            // 
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(606, 38);
@@ -285,12 +266,30 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // panelBlock
+            // 
+            this.panelBlock.Controls.Add(this.labelR);
+            this.panelBlock.Location = new System.Drawing.Point(0, 0);
+            this.panelBlock.Name = "panelBlock";
+            this.panelBlock.Size = new System.Drawing.Size(800, 314);
+            this.panelBlock.TabIndex = 27;
+            // 
+            // labelR
+            // 
+            this.labelR.AutoSize = true;
+            this.labelR.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F);
+            this.labelR.Location = new System.Drawing.Point(52, 130);
+            this.labelR.Name = "labelR";
+            this.labelR.Size = new System.Drawing.Size(164, 39);
+            this.labelR.TabIndex = 0;
+            this.labelR.Text = "Resposta";
+            // 
             // FormContacto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 313);
-            this.Controls.Add(this.grpboxDelete);
+            this.Controls.Add(this.panelBlock);
             this.Controls.Add(this.lblCriador);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblUltimaModific);
@@ -316,8 +315,9 @@
             this.Controls.Add(this.btnCancelar);
             this.Name = "FormContacto";
             this.Text = "Contacto";
-            this.grpboxDelete.ResumeLayout(false);
-            this.grpboxDelete.PerformLayout();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormContacto_FormClosing);
+            this.panelBlock.ResumeLayout(false);
+            this.panelBlock.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,8 +346,8 @@
         private System.Windows.Forms.Label lblUltimaModific;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblCriador;
-        private System.Windows.Forms.GroupBox grpboxDelete;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Panel panelBlock;
+        private System.Windows.Forms.Label labelR;
     }
 }

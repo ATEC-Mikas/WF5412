@@ -21,6 +21,7 @@ namespace ListaContactos
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             _conta = null;
+            panelSeed.Visible = false;
         }
 
         private bool validarString(string s)
@@ -100,8 +101,11 @@ namespace ListaContactos
 
         private void btnSeed_Click(object sender, EventArgs e)
         {
+            panelSeed.Visible = true;
+            panelSeed.Update();
             if(Seed.Create())
                 MessageBox.Show("Seeds geradas!");
+            panelSeed.Visible = false;
         }
 
         private void UserCheck(object sender, KeyPressEventArgs e)

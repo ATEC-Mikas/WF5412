@@ -20,7 +20,10 @@ namespace ListaContactos
             string[] subdir = destino.Split('/');
             string x = string.Empty;
             for (int i = 0; i <= subdir.Length - 2; i++)
-                x += subdir[i];
+                if(i==0)
+                    x += subdir[i];
+                else
+                    x += $"/{subdir[i]}";
 
             if (!Directory.Exists(x))
                 Directory.CreateDirectory(x);
