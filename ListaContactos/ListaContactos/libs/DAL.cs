@@ -123,7 +123,7 @@ namespace ListaContactos
                 if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao" || kv[i].Key == "publico")
                      valor += kv[i].Value;
                 else 
-                     valor += $"'{EscapeSQL(kv[i].Value)}'";
+                     valor += $"'{kv[i].Value}'";
                 if (i != kv.Count - 1)
                 {
                     id += ",";
@@ -179,7 +179,7 @@ namespace ListaContactos
                 if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao" || kv[i].Key == "publico")
                     set += $"[{kv[i].Key}] = {kv[i].Value}";
                 else
-                    set += $"[{kv[i].Key}] = '{EscapeSQL(kv[i].Value)}'";
+                    set += $"[{kv[i].Key}] = '{kv[i].Value}'";
                 if (i != kv.Count - 1)
                 {
                     set += ",";
