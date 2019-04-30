@@ -43,7 +43,7 @@ namespace ListaContactos
 
         public static Conta FindByUser(string id)
         {
-            OleDbDataReader data = _dal.find("username,nome,password", $"where username='{id}'");
+            OleDbDataReader data = _dal.find("username,nome,password", $"where username='{Mikas.EscapeSQLSQ(id)}'");
             Conta t=null;
             if (data.HasRows)
             {
@@ -58,7 +58,7 @@ namespace ListaContactos
 
         public static bool exists(string user)
         {
-            return _dal.exists($"where username='{user}'");
+            return _dal.exists($"where username='{Mikas.EscapeSQLSQ(user)}'");
         }
     }
 }

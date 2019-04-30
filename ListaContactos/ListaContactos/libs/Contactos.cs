@@ -64,7 +64,6 @@ namespace ListaContactos
             return c;
         }
 
-
         public static List<KeyValuePair<string, string>> AllForListFiltered(Conta c,List<KeyValuePair<string,string>> filtros)
         {
             bool publico = false;
@@ -79,7 +78,7 @@ namespace ListaContactos
             List<KeyValuePair<string, string>> _filtros = new List<KeyValuePair<string, string>>(filtros);
             List<KeyValuePair<string, string>> discarding = new List<KeyValuePair<string, string>>();
 
-            foreach(KeyValuePair<string, string> kv in _filtros)
+            foreach (KeyValuePair<string, string> kv in _filtros)
             {
                 if (kv.Key == "publico")
                 {
@@ -118,14 +117,14 @@ namespace ListaContactos
                 if(fpublico=="True")
                     query = $"where publico=true";
                 if(fpublico=="False")
-                    query = $"where criador='{c.User}' and publico=false";
+                    query = $"where criador='{Mikas.EscapeSQLSQ(c.User)}' and publico=false";
             }
             for(int i=0;i<_filtros.Count;i++)
             {
                     if (_filtros[i].Key == "nif")
                         values += $"nif={_filtros[i].Value}";
                     else
-                        values += $"{_filtros[i].Key} like '%{_filtros[i].Value}%'";
+                        values += $"{_filtros[i].Key} like '%{Mikas.EscapeSQL(_filtros[i].Value)}%'";
                     if (i != _filtros.Count - 1)
                         values += " and ";
             }
@@ -135,7 +134,7 @@ namespace ListaContactos
 
             if(fpublico==null)
             {
-                OleDbDataReader data = _dal.find("id", $"where criador='{c.User}' and publico=false {values}");
+                OleDbDataReader data = _dal.find("id", $"where criador='{Mikas.EscapeSQLSQ(c.User)}' and publico=false {values}");
                 if (data.HasRows)
                 {
                     while (data.Read())
@@ -145,7 +144,7 @@ namespace ListaContactos
                 }
                 data.Close();
 
-                data = _dal.find("id", $"where publico=true and criador='{c.User}' {values}");
+                data = _dal.find("id", $"where publico=true and criador='{Mikas.EscapeSQLSQ(c.User)}' {values}");
                 if (data.HasRows)
                 {
                     while (data.Read())
@@ -154,7 +153,7 @@ namespace ListaContactos
                     }
                 }
 
-                data = _dal.find("id", $"where publico=true and criador<>'{c.User}' {values}");
+                data = _dal.find("id", $"where publico=true and criador<>'{Mikas.EscapeSQLSQ(c.User)}' {values}");
                 if (data.HasRows)
                 {
                     while (data.Read())
@@ -232,7 +231,7 @@ namespace ListaContactos
             List<KeyValuePair<string, string>> contactos = new List<KeyValuePair<string, string>>();
 
 
-            OleDbDataReader data = _dal.find("id,nome", $"where criador='{c.User}' and publico=false");
+            OleDbDataReader data = _dal.find("id,nome", $"where criador='{Mikas.EscapeSQLSQ(c.User)}' and publico=false");
             if (data.HasRows)
             {
                 while (data.Read())
@@ -242,7 +241,7 @@ namespace ListaContactos
             }
             data.Close();
 
-            data = _dal.find("id,nome", $"where publico=true and criador='{c.User}'");
+            data = _dal.find("id,nome", $"where publico=true and criador='{Mikas.EscapeSQLSQ(c.User)}'");
             if (data.HasRows)
             {
                 while (data.Read())
@@ -251,7 +250,7 @@ namespace ListaContactos
                 }
             }
 
-            data = _dal.find("id,nome", $"where publico=true and criador<>'{c.User}'");
+            data = _dal.find("id,nome", $"where publico=true and criador<>'{Mikas.EscapeSQLSQ(c.User)}'");
             if (data.HasRows)
             {
                 while (data.Read())
@@ -268,7 +267,7 @@ namespace ListaContactos
             List<Contacto> contactos = new List<Contacto>();
 
 
-            OleDbDataReader data = _dal.find("id,nome,titulo,morada,nif,criador,data_criado,publico",$"where criador='{c.User}' and publico=false");
+            OleDbDataReader data = _dal.find("id,nome,titulo,morada,nif,criador,data_criado,publico",$"where criador='{Mikas.EscapeSQLSQ(c.User)}' and publico=false");
             if (data.HasRows)
             {
                 while (data.Read())

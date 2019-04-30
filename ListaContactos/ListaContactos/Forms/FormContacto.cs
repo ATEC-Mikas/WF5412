@@ -350,7 +350,8 @@ namespace ListaContactos
             //    MessageBox.Show("Porra");
             //if (CompareList(_contacto.Comunicacoes,_contactoBackup.Comunicacoes))
             //    MessageBox.Show(":(");
-
+            if (_criado)
+                return false;
             return _contacto.Nome == _contactoBackup.Nome
                    && _contacto.Morada == _contactoBackup.Morada
                    && _contacto.Nif == _contactoBackup.Nif

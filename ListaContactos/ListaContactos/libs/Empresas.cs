@@ -32,7 +32,7 @@ namespace ListaContactos
 
             foreach (string s in lb)
                 if (!l.Contains(s))
-                    _dal.delete($"where id_contacto='{id}' and nome_empresa='{s}'");
+                    _dal.delete($"where id_contacto='{id}' and nome_empresa='{Mikas.EscapeSQLSQ(s)}'");
 
             lb = FindById(id);
             foreach(string s in l)
@@ -49,7 +49,7 @@ namespace ListaContactos
         public static List<string> FindByEmpresa(string nome)
         {
             List<string> list = new List<string>();
-            OleDbDataReader data = _dal.find("id_contacto", $"where nome_empresa like '%{nome}%'"); 
+            OleDbDataReader data = _dal.find("id_contacto", $"where nome_empresa like '%{Mikas.EscapeSQL(nome)}%'"); 
             if (data.HasRows)
             {
                 while (data.Read())

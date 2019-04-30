@@ -161,15 +161,15 @@ namespace ListaContactos
             DAL dal = new DAL("Contato");
             List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
             if (_nomeChanged)
-                kv.Add(new KeyValuePair<string, string>("nome", _nome));
+                kv.Add(new KeyValuePair<string, string>("nome", Mikas.EscapeSQLSQ(_nome)));
             if (_tituloChanged)
-                kv.Add(new KeyValuePair<string, string>("titulo", _titulo));
+                kv.Add(new KeyValuePair<string, string>("titulo", Mikas.EscapeSQLSQ(_titulo)));
             if (_moradaChanged)
-                kv.Add(new KeyValuePair<string, string>("morada", _morada));
+                kv.Add(new KeyValuePair<string, string>("morada", Mikas.EscapeSQLSQ(_morada)));
             if(_nifChanged)
-                kv.Add(new KeyValuePair<string, string>("nif", _nif.ToString()));
+                kv.Add(new KeyValuePair<string, string>("nif", Mikas.EscapeSQLSQ(_nif.ToString())));
             if(_publicoChanged)
-                kv.Add(new KeyValuePair<string, string>("publico", _publico.ToString()));
+                kv.Add(new KeyValuePair<string, string>("publico", Mikas.EscapeSQLSQ(_publico.ToString())));
 
             if (dal.exists($"where id = '{_id}'"))
             {
@@ -178,7 +178,7 @@ namespace ListaContactos
             else
             {
                 kv.Add(new KeyValuePair<string, string>("id", _id));
-                kv.Add(new KeyValuePair<string, string>("criador", _criador.User));
+                kv.Add(new KeyValuePair<string, string>("criador", Mikas.EscapeSQLSQ(_criador.User)));
                 kv.Add(new KeyValuePair<string, string>("data_criado", _dataCriada.ToString()));
                 sucesso = dal.insert(kv);
             }

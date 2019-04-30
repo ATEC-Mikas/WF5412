@@ -104,6 +104,7 @@
     <Compile Include="Forms\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="libs\Mikas.cs" />
     <Compile Include="libs\Modificacoes.cs" />
     <Compile Include="libs\Seed.cs" />
     <Compile Include="Program.cs" />

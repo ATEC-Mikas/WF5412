@@ -14,6 +14,11 @@ namespace ListaContactos
         private Log _logs;
         private Log _querylogs;
 
+        private static string EscapeSQL(string s)
+        {
+            return s.Replace("'", "[']");
+        }
+
         public DAL(string tabela) {
             _conexao = new OleDbConnection();
             _conexao.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db\\listacontactos.mdb;";
@@ -118,7 +123,7 @@ namespace ListaContactos
                 if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao" || kv[i].Key == "publico")
                      valor += kv[i].Value;
                 else 
-                     valor += $"'{kv[i].Value}'";
+                     valor += $"'{EscapeSQL(kv[i].Value)}'";
                 if (i != kv.Count - 1)
                 {
                     id += ",";
@@ -174,7 +179,7 @@ namespace ListaContactos
                 if (kv[i].Key == "nif" || kv[i].Key == "tipo_comunicacao" || kv[i].Key == "publico")
                     set += $"[{kv[i].Key}] = {kv[i].Value}";
                 else
-                    set += $"[{kv[i].Key}] = '{kv[i].Value}'";
+                    set += $"[{kv[i].Key}] = '{EscapeSQL(kv[i].Value)}'";
                 if (i != kv.Count - 1)
                 {
                     set += ",";
