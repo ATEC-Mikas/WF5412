@@ -52,6 +52,9 @@
             this.lblConta = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnDefinicoes = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.grpBoxConta = new System.Windows.Forms.GroupBox();
+            this.grpBoxConta.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -241,15 +244,15 @@
             // lblConta
             // 
             this.lblConta.AutoSize = true;
-            this.lblConta.Location = new System.Drawing.Point(329, 341);
+            this.lblConta.Location = new System.Drawing.Point(9, 70);
             this.lblConta.Name = "lblConta";
-            this.lblConta.Size = new System.Drawing.Size(111, 13);
+            this.lblConta.Size = new System.Drawing.Size(66, 13);
             this.lblConta.TabIndex = 21;
-            this.lblConta.Text = "Bem Vindo %Conta% !";
+            this.lblConta.Text = "Nome Conta";
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(332, 494);
+            this.btnLogout.Location = new System.Drawing.Point(6, 185);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(177, 23);
             this.btnLogout.TabIndex = 22;
@@ -259,7 +262,7 @@
             // 
             // btnDefinicoes
             // 
-            this.btnDefinicoes.Location = new System.Drawing.Point(332, 465);
+            this.btnDefinicoes.Location = new System.Drawing.Point(6, 156);
             this.btnDefinicoes.Name = "btnDefinicoes";
             this.btnDefinicoes.Size = new System.Drawing.Size(177, 23);
             this.btnDefinicoes.TabIndex = 23;
@@ -267,14 +270,35 @@
             this.btnDefinicoes.UseVisualStyleBackColor = true;
             this.btnDefinicoes.Click += new System.EventHandler(this.btnDefinicoes_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label8.Location = new System.Drawing.Point(6, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(145, 31);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Bem Vindo";
+            // 
+            // grpBoxConta
+            // 
+            this.grpBoxConta.Controls.Add(this.label8);
+            this.grpBoxConta.Controls.Add(this.btnDefinicoes);
+            this.grpBoxConta.Controls.Add(this.lblConta);
+            this.grpBoxConta.Controls.Add(this.btnLogout);
+            this.grpBoxConta.Location = new System.Drawing.Point(328, 302);
+            this.grpBoxConta.Name = "grpBoxConta";
+            this.grpBoxConta.Size = new System.Drawing.Size(186, 215);
+            this.grpBoxConta.TabIndex = 25;
+            this.grpBoxConta.TabStop = false;
+            this.grpBoxConta.Text = "Conta";
+            // 
             // FormListaContactos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 519);
-            this.Controls.Add(this.btnDefinicoes);
-            this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.lblConta);
+            this.Controls.Add(this.grpBoxConta);
             this.Controls.Add(this.panelFiltros);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -300,6 +324,8 @@
             this.Name = "FormListaContactos";
             this.Text = "Lista de Contactos";
             this.Load += new System.EventHandler(this.FormListaContactos_Load);
+            this.grpBoxConta.ResumeLayout(false);
+            this.grpBoxConta.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,5 +357,7 @@
         private System.Windows.Forms.Label lblConta;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnDefinicoes;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox grpBoxConta;
     }
 }

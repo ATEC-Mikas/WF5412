@@ -57,7 +57,8 @@ namespace ListaContactos
             foreach (string s in Empresas.FindById(_contacto.ID))
                 ListEmpresas.Items.Add(s);
             foreach (KeyValuePair<string, string> kv in Comunicacoes.FindById(_contacto.ID))
-                ListComunicacoes.Items.Add(kv);
+                //ListComunicacoes.Items.Add(kv);
+                dataGridComunicacoes.Rows.Add(kv.Key, kv.Value);
             txtNome.Enabled = false;
             txtMorada.Enabled = false;
             txtNif.Enabled = false;
@@ -114,6 +115,24 @@ namespace ListaContactos
                     _contacto.Publico = checkPublico.Checked;
                     AtualizarEmpresas();
                     AtualizarComunicacoes();
+                    if(isEntradasIguais())
+                    {
+                        txtNome.Enabled = false;
+                        txtMorada.Enabled = false;
+                        txtNif.Enabled = false;
+                        txtTitulo.Enabled = false;
+                        checkPublico.Enabled = false;
+                        btnCAdd.Enabled = false;
+                        btnCRemov.Enabled = false;
+                        btnEAdd.Enabled = false;
+                        btnERemov.Enabled = false;
+                        btnCancelar.Enabled = false;
+                        btnCancelar.Visible = false;
+                        btnLogs.Visible = true;
+                        btnDelete.Visible = true;
+                        btnEdit.Text = "Editar";
+                        MessageBox.Show("Não houve nenhuma alteração.");
+                    } else 
                     if(_contacto.save(_conta))
                     {
                         txtNome.Enabled = false;
@@ -141,10 +160,10 @@ namespace ListaContactos
         private void AtualizarComunicacoes()
         {
             foreach(KeyValuePair<string,string> kv in _contacto.Comunicacoes)
-                if (!ListComunicacoes.Items.Contains(kv))
+                if (!GetKVFromDataGrid().Contains(kv))
                     _contacto.RemoverComunicacao(kv.Key, kv.Value);
 
-            foreach (KeyValuePair<string, string> kv in ListComunicacoes.Items)
+            foreach (KeyValuePair<string, string> kv in GetKVFromDataGrid())
                 if (!_contacto.Comunicacoes.Contains(kv))
                     _contacto.AdicionarComunicacao(kv.Key, kv.Value);
         }
@@ -230,21 +249,33 @@ namespace ListaContactos
                 ListEmpresas.Items.Remove(ListEmpresas.SelectedItem);
         }
 
+        private List<KeyValuePair<string,string>> GetKVFromDataGrid()
+        {
+            List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
+
+            foreach (DataGridViewRow c in dataGridComunicacoes.Rows)
+                kv.Add(new KeyValuePair<string, string>(c.Cells[0].Value as string, c.Cells[1].Value as string));
+
+            return kv;
+        }
+
         private void btnCAdd_Click(object sender, EventArgs e)
         {
             using (FormPopUpComunicacao z = new FormPopUpComunicacao())
             {
                 z.ShowDialog();
                 if (z.Comunicacao != null)
-                    if (!ListComunicacoes.Items.Contains(z.Comunicacao))
-                        ListComunicacoes.Items.Add(z.Comunicacao);
+                    if (!GetKVFromDataGrid().Contains(z.Comunicacao.Value))
+                        dataGridComunicacoes.Rows.Add(z.Comunicacao.Value.Key, z.Comunicacao.Value.Value);
+                        //ListComunicacoes.Items.Add(z.Comunicacao);
             }
         }
 
         private void btnCRemov_Click(object sender, EventArgs e)
         {
-            if (ListComunicacoes.SelectedItem !=null)
-                ListComunicacoes.Items.Remove(ListComunicacoes.SelectedItem as KeyValuePair<string,string>?);
+            if (dataGridComunicacoes.SelectedCells != null)
+                dataGridComunicacoes.Rows.Remove(dataGridComunicacoes.SelectedCells[0].OwningRow);
+                //ListComunicacoes.Items.Remove(ListComunicacoes.SelectedItem as KeyValuePair<string,string>?);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -260,9 +291,10 @@ namespace ListaContactos
             ListEmpresas.Items.Clear();
             foreach (string s in Empresas.FindById(_contactoBackup.ID))
                 ListEmpresas.Items.Add(s);
-            ListComunicacoes.Items.Clear();
+            dataGridComunicacoes.Rows.Clear();
+            //ListComunicacoes.Items.Clear();
             foreach (KeyValuePair<string, string> kv in Comunicacoes.FindById(_contactoBackup.ID))
-                ListComunicacoes.Items.Add(kv);
+                dataGridComunicacoes.Rows.Add(kv.Key, kv.Value);
             txtNome.Enabled = false;
             txtMorada.Enabled = false;
             txtNif.Enabled = false;
@@ -290,10 +322,10 @@ namespace ListaContactos
 
         private void ShowPanel(string s)
         {
+            labelR.Text = s;
             panelBlock.Show();
             panelBlock.Update();
             panelBlock.Location = new Point(0, 0);
-            labelR.Text = s;
         }
 
         private void btnLogs_Click(object sender, EventArgs e)
@@ -302,6 +334,30 @@ namespace ListaContactos
             {
                 z.ShowDialog();
             }
+        }
+
+        private bool CompareList<T>(List<T> x,List<T> y)
+        {
+            var a = x.Except(y).ToList();
+            var b = y.Except(x).ToList();
+
+            return !a.Any() && !b.Any(); 
+        }
+
+        private bool isEntradasIguais()
+        {
+            //if (CompareList(_contacto.Empresas,_contactoBackup.Empresas))
+            //    MessageBox.Show("Porra");
+            //if (CompareList(_contacto.Comunicacoes,_contactoBackup.Comunicacoes))
+            //    MessageBox.Show(":(");
+
+            return _contacto.Nome == _contactoBackup.Nome
+                   && _contacto.Morada == _contactoBackup.Morada
+                   && _contacto.Nif == _contactoBackup.Nif
+                   && _contacto.Titulo == _contactoBackup.Titulo
+                   && _contacto.Publico == _contactoBackup.Publico
+                   && CompareList(_contacto.Empresas, _contactoBackup.Empresas)
+                   && CompareList(_contacto.Comunicacoes, _contactoBackup.Comunicacoes);
         }
     }
 }

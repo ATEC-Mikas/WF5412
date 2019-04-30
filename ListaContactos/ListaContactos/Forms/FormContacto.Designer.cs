@@ -34,7 +34,6 @@
             this.checkPublico = new System.Windows.Forms.CheckBox();
             this.txtTitulo = new System.Windows.Forms.TextBox();
             this.ListEmpresas = new System.Windows.Forms.ListBox();
-            this.ListComunicacoes = new System.Windows.Forms.ListBox();
             this.btnERemov = new System.Windows.Forms.Button();
             this.btnEAdd = new System.Windows.Forms.Button();
             this.btnCAdd = new System.Windows.Forms.Button();
@@ -54,7 +53,11 @@
             this.panelBlock = new System.Windows.Forms.Panel();
             this.labelR = new System.Windows.Forms.Label();
             this.btnLogs = new System.Windows.Forms.Button();
+            this.dataGridComunicacoes = new System.Windows.Forms.DataGridView();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Informação = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelBlock.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridComunicacoes)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNome
@@ -107,14 +110,6 @@
             this.ListEmpresas.Size = new System.Drawing.Size(165, 95);
             this.ListEmpresas.TabIndex = 8;
             // 
-            // ListComunicacoes
-            // 
-            this.ListComunicacoes.FormattingEnabled = true;
-            this.ListComunicacoes.Location = new System.Drawing.Point(196, 176);
-            this.ListComunicacoes.Name = "ListComunicacoes";
-            this.ListComunicacoes.Size = new System.Drawing.Size(207, 95);
-            this.ListComunicacoes.TabIndex = 9;
-            // 
             // btnERemov
             // 
             this.btnERemov.Location = new System.Drawing.Point(12, 277);
@@ -137,7 +132,7 @@
             // 
             // btnCAdd
             // 
-            this.btnCAdd.Location = new System.Drawing.Point(328, 277);
+            this.btnCAdd.Location = new System.Drawing.Point(713, 277);
             this.btnCAdd.Name = "btnCAdd";
             this.btnCAdd.Size = new System.Drawing.Size(75, 23);
             this.btnCAdd.TabIndex = 13;
@@ -147,9 +142,9 @@
             // 
             // btnCRemov
             // 
-            this.btnCRemov.Location = new System.Drawing.Point(196, 277);
+            this.btnCRemov.Location = new System.Drawing.Point(629, 277);
             this.btnCRemov.Name = "btnCRemov";
-            this.btnCRemov.Size = new System.Drawing.Size(126, 23);
+            this.btnCRemov.Size = new System.Drawing.Size(78, 23);
             this.btnCRemov.TabIndex = 12;
             this.btnCRemov.Text = "Remover";
             this.btnCRemov.UseVisualStyleBackColor = true;
@@ -211,7 +206,7 @@
             // 
             // btnFechar
             // 
-            this.btnFechar.Location = new System.Drawing.Point(700, 9);
+            this.btnFechar.Location = new System.Drawing.Point(700, 38);
             this.btnFechar.Name = "btnFechar";
             this.btnFechar.Size = new System.Drawing.Size(88, 23);
             this.btnFechar.TabIndex = 20;
@@ -221,7 +216,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(606, 9);
+            this.btnEdit.Location = new System.Drawing.Point(606, 38);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(88, 23);
             this.btnEdit.TabIndex = 21;
@@ -232,7 +227,7 @@
             // lblUltimaModific
             // 
             this.lblUltimaModific.AutoSize = true;
-            this.lblUltimaModific.Location = new System.Drawing.Point(417, 258);
+            this.lblUltimaModific.Location = new System.Drawing.Point(4, 306);
             this.lblUltimaModific.Name = "lblUltimaModific";
             this.lblUltimaModific.Size = new System.Drawing.Size(158, 13);
             this.lblUltimaModific.TabIndex = 22;
@@ -240,7 +235,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(700, 38);
+            this.btnDelete.Location = new System.Drawing.Point(700, 67);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(88, 23);
             this.btnDelete.TabIndex = 23;
@@ -251,7 +246,7 @@
             // lblCriador
             // 
             this.lblCriador.AutoSize = true;
-            this.lblCriador.Location = new System.Drawing.Point(417, 287);
+            this.lblCriador.Location = new System.Drawing.Point(635, 306);
             this.lblCriador.Name = "lblCriador";
             this.lblCriador.Size = new System.Drawing.Size(59, 13);
             this.lblCriador.TabIndex = 24;
@@ -259,7 +254,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(606, 38);
+            this.btnCancelar.Location = new System.Drawing.Point(606, 67);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(88, 23);
             this.btnCancelar.TabIndex = 26;
@@ -272,7 +267,7 @@
             this.panelBlock.Controls.Add(this.labelR);
             this.panelBlock.Location = new System.Drawing.Point(0, 0);
             this.panelBlock.Name = "panelBlock";
-            this.panelBlock.Size = new System.Drawing.Size(800, 314);
+            this.panelBlock.Size = new System.Drawing.Size(800, 327);
             this.panelBlock.TabIndex = 27;
             // 
             // labelR
@@ -287,7 +282,7 @@
             // 
             // btnLogs
             // 
-            this.btnLogs.Location = new System.Drawing.Point(420, 220);
+            this.btnLogs.Location = new System.Drawing.Point(700, 96);
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(88, 23);
             this.btnLogs.TabIndex = 28;
@@ -295,12 +290,50 @@
             this.btnLogs.UseVisualStyleBackColor = true;
             this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
             // 
+            // dataGridComunicacoes
+            // 
+            this.dataGridComunicacoes.AllowUserToAddRows = false;
+            this.dataGridComunicacoes.AllowUserToDeleteRows = false;
+            this.dataGridComunicacoes.AllowUserToOrderColumns = true;
+            this.dataGridComunicacoes.AllowUserToResizeColumns = false;
+            this.dataGridComunicacoes.AllowUserToResizeRows = false;
+            this.dataGridComunicacoes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridComunicacoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridComunicacoes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Tipo,
+            this.Informação});
+            this.dataGridComunicacoes.Location = new System.Drawing.Point(196, 176);
+            this.dataGridComunicacoes.MultiSelect = false;
+            this.dataGridComunicacoes.Name = "dataGridComunicacoes";
+            this.dataGridComunicacoes.ReadOnly = true;
+            this.dataGridComunicacoes.RowHeadersVisible = false;
+            this.dataGridComunicacoes.ShowCellErrors = false;
+            this.dataGridComunicacoes.ShowCellToolTips = false;
+            this.dataGridComunicacoes.ShowEditingIcon = false;
+            this.dataGridComunicacoes.ShowRowErrors = false;
+            this.dataGridComunicacoes.Size = new System.Drawing.Size(592, 95);
+            this.dataGridComunicacoes.TabIndex = 29;
+            this.dataGridComunicacoes.TabStop = false;
+            // 
+            // Tipo
+            // 
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // Informação
+            // 
+            this.Informação.HeaderText = "Informação";
+            this.Informação.Name = "Informação";
+            this.Informação.ReadOnly = true;
+            // 
             // FormContacto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 313);
+            this.ClientSize = new System.Drawing.Size(800, 329);
             this.Controls.Add(this.panelBlock);
+            this.Controls.Add(this.dataGridComunicacoes);
             this.Controls.Add(this.lblCriador);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblUltimaModific);
@@ -316,7 +349,6 @@
             this.Controls.Add(this.btnCRemov);
             this.Controls.Add(this.btnEAdd);
             this.Controls.Add(this.btnERemov);
-            this.Controls.Add(this.ListComunicacoes);
             this.Controls.Add(this.ListEmpresas);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.checkPublico);
@@ -330,6 +362,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormContacto_FormClosing);
             this.panelBlock.ResumeLayout(false);
             this.panelBlock.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridComunicacoes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,7 +375,6 @@
         private System.Windows.Forms.CheckBox checkPublico;
         private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.ListBox ListEmpresas;
-        private System.Windows.Forms.ListBox ListComunicacoes;
         private System.Windows.Forms.Button btnERemov;
         private System.Windows.Forms.Button btnEAdd;
         private System.Windows.Forms.Button btnCAdd;
@@ -362,5 +394,8 @@
         private System.Windows.Forms.Panel panelBlock;
         private System.Windows.Forms.Label labelR;
         private System.Windows.Forms.Button btnLogs;
+        private System.Windows.Forms.DataGridView dataGridComunicacoes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Informação;
     }
 }

@@ -28,7 +28,7 @@ namespace ListaContactos
         public FormListaContactos(Conta c) : this()
         {
             _conta = new Conta(c);
-            lblConta.Text = lblConta.Text.Replace("%Conta%", c.Nome);
+            lblConta.Text = _conta.Nome;
         }
 
         private void FormListaContactos_Load(object sender, EventArgs e)
@@ -123,7 +123,14 @@ namespace ListaContactos
 
         private void btnDefinicoes_Click(object sender, EventArgs e)
         {
-            
+            this.Hide();
+            using (FormPopUpContaDef z = new FormPopUpContaDef(_conta))
+            {
+                z.ShowDialog();
+                _conta = new Conta(z.Conta);
+                lblConta.Text = _conta.Nome;
+            }
+            this.Show();
         }
     }
 }
