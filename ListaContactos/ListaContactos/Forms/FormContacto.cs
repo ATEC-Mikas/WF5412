@@ -16,6 +16,7 @@ namespace ListaContactos
         private Contacto _contactoBackup;
         private Conta _conta;
         private bool _deleted;
+        private bool _criado;
 
         public FormContacto()
         {
@@ -35,6 +36,9 @@ namespace ListaContactos
             btnEdit.Text = "Guardar";
             lblUltimaModific.Text = Modificacoes.UltimaMod(_contacto) ?? "";
             lblCriador.Text = $"Criado por {_contacto.Criador.User}";
+            _criado = true;
+            btnLogs.Visible = false;
+            btnDelete.Visible = false;
         }
 
         public FormContacto(Contacto c,Conta conta)  : this()
@@ -66,12 +70,15 @@ namespace ListaContactos
 
             if (_contacto.Criador.User != _conta.User)
             {
+                btnLogs.Enabled = false;
                 btnDelete.Enabled = false;
                 btnDelete.Visible = false;
             }
 
             lblUltimaModific.Text = Modificacoes.UltimaMod(_contacto) ?? "";
-            lblCriador.Text = $"Criado por {_contacto.Criador.Nome}";
+            lblCriador.Text = $"Criado por {_contacto.Criador.User}";
+
+            _criado = false;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -120,6 +127,8 @@ namespace ListaContactos
                         btnERemov.Enabled = false;
                         btnCancelar.Enabled = false;
                         btnCancelar.Visible = false;
+                        btnLogs.Visible = true;
+                        btnDelete.Visible = true;
                         btnEdit.Text = "Editar";
                         MessageBox.Show("Salvo com sucesso!");
                         lblUltimaModific.Text = Modificacoes.UltimaMod(_contacto);
@@ -196,9 +205,7 @@ namespace ListaContactos
             if(MessageBox.Show("Tem a Certeza?", "Confirmação",MessageBoxButtons.YesNo, MessageBoxIcon.Question,MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
             {
                 _contacto.delete();
-                panelBlock.Show();
-                panelBlock.Update();
-                labelR.Text = "A apagar o contacto...";
+                ShowPanel("A apagar o contacto...");
                 _deleted = true;
                 while(Contactos.Existe(_contacto.ID))
                     System.Threading.Thread.Sleep(1000);
@@ -273,13 +280,27 @@ namespace ListaContactos
 
         private void FormContacto_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(!_deleted)
+            if(!_deleted && !_criado)
             {
-                panelBlock.Show();
-                panelBlock.Update();
-                labelR.Text = "A guardar alterações...";
+                ShowPanel("A guardar alterações...");
                 while (!Contactos.Existe(_contacto.ID))
                     System.Threading.Thread.Sleep(1000);
+            }
+        }
+
+        private void ShowPanel(string s)
+        {
+            panelBlock.Show();
+            panelBlock.Update();
+            panelBlock.Location = new Point(0, 0);
+            labelR.Text = s;
+        }
+
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+            using (FormPopUpLogs z = new FormPopUpLogs(_contacto))
+            {
+                z.ShowDialog();
             }
         }
     }

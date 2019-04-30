@@ -66,11 +66,23 @@
     <Compile Include="Forms\FormPopUpComunicacao.Designer.cs">
       <DependentUpon>FormPopUpComunicacao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormPopUpContaDef.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPopUpContaDef.Designer.cs">
+      <DependentUpon>FormPopUpContaDef.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormPopUpEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormPopUpEmpresa.Designer.cs">
       <DependentUpon>FormPopUpEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormPopUpLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPopUpLogs.Designer.cs">
+      <DependentUpon>FormPopUpLogs.cs</DependentUpon>
     </Compile>
     <Compile Include="libs\Comunicacoes.cs" />
     <Compile Include="libs\Conta.cs" />
@@ -111,8 +123,14 @@
     <EmbeddedResource Include="Forms\FormPopUpComunicacao.resx">
       <DependentUpon>FormPopUpComunicacao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPopUpContaDef.resx">
+      <DependentUpon>FormPopUpContaDef.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPopUpEmpresa.resx">
       <DependentUpon>FormPopUpEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPopUpLogs.resx">
+      <DependentUpon>FormPopUpLogs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

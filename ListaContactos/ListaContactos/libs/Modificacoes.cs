@@ -34,5 +34,21 @@ namespace ListaContactos
             data.Close();
             return r;
         }
+
+        public static List<KeyValuePair<string,string>> GetModFromId(string id)
+        {
+            List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
+
+            OleDbDataReader data = _dal.find("id_modificador,Data", $"where id_contacto = '{id}' order by Data desc");
+            if(data.HasRows)
+            {
+                while(data.Read())
+                {
+                    kv.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetDateTime(1).ToString()));
+                }
+            }
+            data.Close();
+            return kv;
+        }
     }
 }

@@ -49,6 +49,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.panelFiltros = new System.Windows.Forms.Panel();
             this.btnProcurar = new System.Windows.Forms.Button();
+            this.lblConta = new System.Windows.Forms.Label();
+            this.btnLogout = new System.Windows.Forms.Button();
+            this.btnDefinicoes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -235,11 +238,43 @@
             this.btnProcurar.UseVisualStyleBackColor = true;
             this.btnProcurar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
+            // lblConta
+            // 
+            this.lblConta.AutoSize = true;
+            this.lblConta.Location = new System.Drawing.Point(329, 341);
+            this.lblConta.Name = "lblConta";
+            this.lblConta.Size = new System.Drawing.Size(111, 13);
+            this.lblConta.TabIndex = 21;
+            this.lblConta.Text = "Bem Vindo %Conta% !";
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(332, 494);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(177, 23);
+            this.btnLogout.TabIndex = 22;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // btnDefinicoes
+            // 
+            this.btnDefinicoes.Location = new System.Drawing.Point(332, 465);
+            this.btnDefinicoes.Name = "btnDefinicoes";
+            this.btnDefinicoes.Size = new System.Drawing.Size(177, 23);
+            this.btnDefinicoes.TabIndex = 23;
+            this.btnDefinicoes.Text = "Definições de Conta";
+            this.btnDefinicoes.UseVisualStyleBackColor = true;
+            this.btnDefinicoes.Click += new System.EventHandler(this.btnDefinicoes_Click);
+            // 
             // FormListaContactos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 519);
+            this.Controls.Add(this.btnDefinicoes);
+            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.lblConta);
             this.Controls.Add(this.panelFiltros);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -293,5 +328,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panelFiltros;
         private System.Windows.Forms.Button btnProcurar;
+        private System.Windows.Forms.Label lblConta;
+        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnDefinicoes;
     }
 }

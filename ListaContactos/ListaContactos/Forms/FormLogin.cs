@@ -44,7 +44,18 @@ namespace ListaContactos
                     if (t.comparePassword(txtLPassword.Text)) {
                         this._conta = t;
                         MessageBox.Show("Fez Login com sucesso!");
-                        this.Close();
+                        this.Hide();
+                        using (FormListaContactos z = new FormListaContactos(_conta))
+                        {
+                            z.ShowDialog();
+                            if (z.Logout)
+                            {
+                                this.Show();
+                                limparEntradas();
+                            }
+                            else
+                                this.Close();
+                        }
                     } else
                     {
                         MessageBox.Show("Combinação Password/Username Incorreta!");
@@ -58,6 +69,17 @@ namespace ListaContactos
             {
                 MessageBox.Show("Corrija o username e password e tente denovo!");
             }
+        }
+
+        private void limparEntradas()
+        {
+            txtLPassword.Clear();
+            txtLUser.Clear();
+            txtRConfirmP.Clear();
+            txtRNome.Clear();
+            txtRPass.Clear();
+            txtRUser.Clear();
+            btnRegistar.Enabled = true;
         }
 
         private void btnRegistar_Click(object sender, EventArgs e)

@@ -18,7 +18,7 @@ namespace ListaContactos
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FormDebug());
             //Application.Run(new Login());
-            Application.Run(new FormListaContactos());
+            Application.Run(new FormLogin());
         }
     }
 }

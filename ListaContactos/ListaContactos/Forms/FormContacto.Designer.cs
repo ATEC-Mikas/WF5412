@@ -53,6 +53,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.panelBlock = new System.Windows.Forms.Panel();
             this.labelR = new System.Windows.Forms.Label();
+            this.btnLogs = new System.Windows.Forms.Button();
             this.panelBlock.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -284,6 +285,16 @@
             this.labelR.TabIndex = 0;
             this.labelR.Text = "Resposta";
             // 
+            // btnLogs
+            // 
+            this.btnLogs.Location = new System.Drawing.Point(420, 220);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Size = new System.Drawing.Size(88, 23);
+            this.btnLogs.TabIndex = 28;
+            this.btnLogs.Text = "Logs";
+            this.btnLogs.UseVisualStyleBackColor = true;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
+            // 
             // FormContacto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +324,7 @@
             this.Controls.Add(this.txtNif);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnLogs);
             this.Name = "FormContacto";
             this.Text = "Contacto";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormContacto_FormClosing);
@@ -349,5 +361,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Panel panelBlock;
         private System.Windows.Forms.Label labelR;
+        private System.Windows.Forms.Button btnLogs;
     }
 }
