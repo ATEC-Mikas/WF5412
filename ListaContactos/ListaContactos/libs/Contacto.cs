@@ -85,10 +85,10 @@ namespace ListaContactos
 
 
         public string ID { get { return _id; } }
-        public string Nome { get { return _nome; } set { if (validarString(value)) { _nome = value; _nomeChanged = true; } } }
-        public string Titulo { get { return _titulo; } set { _titulo = value; _tituloChanged = true; } } 
-        public string Morada { get { return _morada; } set { _morada = value; _moradaChanged = true; } } 
-        public int Nif { get { return _nif; } set { if ((value > 100000000 && value < 999999999) || value==-1) { _nif = value; _nifChanged = true; } } }
+        public string Nome { get { return _nome; } set { if (validarString(value) && value!=Nome) { _nome = value; _nomeChanged = true; } } }
+        public string Titulo { get { return _titulo; } set { if (value != Titulo) { _titulo = value; _tituloChanged = true; } } } 
+        public string Morada { get { return _morada; } set { if (value != Morada) { _morada = value; _moradaChanged = true; } } }
+        public int Nif { get { return _nif; } set { if (((value > 100000000 && value < 999999999) || value==-1) && value!=Nif) { _nif = value; _nifChanged = true; } } }
         public Conta Criador { get { return _criador; } }
         public DateTime DataCriada { get { return _dataCriada; } }
         public List<KeyValuePair<string,string>> Comunicacoes { get { return new List<KeyValuePair<string, string>>(_comunicacoes); } }
@@ -150,14 +150,8 @@ namespace ListaContactos
         public bool save(Conta c)
         {
             bool sucesso = false;
-            //private bool _nomeChanged;
-            //private bool _tituloChanged;
-            //private bool _moradaChanged;
-            //private bool _nifChanged;
-            //private bool _comunicacoesChanged;
-            //private bool _empresasChanged;
-            //private bool _publicoChanged;
-            Modificacoes.Registar(this, c);
+            string log = string.Empty;
+            
             DAL dal = new DAL("Contato");
             List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
             if (_nomeChanged)
@@ -181,6 +175,7 @@ namespace ListaContactos
                 kv.Add(new KeyValuePair<string, string>("criador", Mikas.EscapeSQLSQ(_criador.User)));
                 kv.Add(new KeyValuePair<string, string>("data_criado", _dataCriada.ToString()));
                 sucesso = dal.insert(kv);
+                log = "Contacto criado.";
             }
 
             if(_comunicacoesChanged)
@@ -191,6 +186,37 @@ namespace ListaContactos
             {
                 ListaContactos.Empresas.Sync(_empresas, _id);
             }
+            //logs
+            if(sucesso)
+            {
+                if(log!= "Contacto criado.")
+                {
+                    log = "Campos afetados: ";
+                    if (_nomeChanged)
+                        log += "nome ";
+                    if (_tituloChanged)
+                        log += "titulo ";
+                    if (_moradaChanged)
+                        log += "morada ";
+                    if (_nifChanged)
+                        log += "nif ";
+                    if (_publicoChanged)
+                        log += "publico ";
+                    if (_comunicacoesChanged)
+                        log += "comunicações ";
+                    if (_empresasChanged)
+                        log += "empresas ";
+                }
+                Modificacoes.Registar(this, c,log);
+                _nomeChanged = false;
+                _tituloChanged = false;
+                _moradaChanged = false;
+                _nifChanged = false;
+                _comunicacoesChanged = false;
+                _empresasChanged = false;
+                _publicoChanged = false;
+            }
+
             return sucesso;
         }
 
@@ -210,7 +236,8 @@ namespace ListaContactos
                 if (!comunicacao.delete($"where id_contacto='{_id}'") && sucesso)
                     sucesso = false;
 
-
+            if(sucesso)
+                Modificacoes.Registar(this, this.Criador, "Contato eliminado.");
             return sucesso;
         }
 

@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.DataGridLogs = new System.Windows.Forms.DataGridView();
-            this.Modificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelNContacto = new System.Windows.Forms.Label();
+            this.Modificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descrição = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridLogs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             this.DataGridLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridLogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Modificador,
+            this.Descrição,
             this.Hora});
             this.DataGridLogs.Location = new System.Drawing.Point(12, 82);
             this.DataGridLogs.MultiSelect = false;
@@ -53,18 +55,6 @@
             this.DataGridLogs.RowHeadersVisible = false;
             this.DataGridLogs.Size = new System.Drawing.Size(776, 199);
             this.DataGridLogs.TabIndex = 0;
-            // 
-            // Modificador
-            // 
-            this.Modificador.HeaderText = "Modificador";
-            this.Modificador.Name = "Modificador";
-            this.Modificador.ReadOnly = true;
-            // 
-            // Hora
-            // 
-            this.Hora.HeaderText = "Hora";
-            this.Hora.Name = "Hora";
-            this.Hora.ReadOnly = true;
             // 
             // labelNContacto
             // 
@@ -75,6 +65,24 @@
             this.labelNContacto.Size = new System.Drawing.Size(275, 31);
             this.labelNContacto.TabIndex = 1;
             this.labelNContacto.Text = "Logs do %Contacto%";
+            // 
+            // Modificador
+            // 
+            this.Modificador.HeaderText = "Modificador";
+            this.Modificador.Name = "Modificador";
+            this.Modificador.ReadOnly = true;
+            // 
+            // Descrição
+            // 
+            this.Descrição.HeaderText = "Descrição";
+            this.Descrição.Name = "Descrição";
+            this.Descrição.ReadOnly = true;
+            // 
+            // Hora
+            // 
+            this.Hora.HeaderText = "Hora";
+            this.Hora.Name = "Hora";
+            this.Hora.ReadOnly = true;
             // 
             // FormPopUpLogs
             // 
@@ -95,8 +103,9 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DataGridLogs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Modificador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hora;
         private System.Windows.Forms.Label labelNContacto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Modificador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descrição;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hora;
     }
 }

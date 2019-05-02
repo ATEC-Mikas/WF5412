@@ -22,8 +22,8 @@ namespace ListaContactos
 
         public FormPopUpLogs(Contacto c) : this()
         {
-            foreach (KeyValuePair<string, string> kv in Modificacoes.GetModFromId(c.ID))
-                DataGridLogs.Rows.Add(kv.Key, kv.Value);
+            foreach (string[] ls in Modificacoes.GetModFromId(c.ID))
+                DataGridLogs.Rows.Add(ls[0],ls[1],ls[2]);
 
             labelNContacto.Text = labelNContacto.Text.Replace("%Contacto%", c.Nome);
         }

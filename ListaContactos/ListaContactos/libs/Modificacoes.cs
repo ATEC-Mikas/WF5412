@@ -11,11 +11,12 @@ namespace ListaContactos
     {
         private static DAL _dal = new DAL("Modificacao");
 
-        public static void Registar(Contacto c,Conta conta)
+        public static void Registar(Contacto c,Conta conta,string s)
         {
             List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
             kv.Add(new KeyValuePair<string, string>("id_contacto", c.ID));
             kv.Add(new KeyValuePair<string, string>("id_modificador", conta.User));
+            kv.Add(new KeyValuePair<string, string>("descricao", s));
             kv.Add(new KeyValuePair<string, string>("Data", DateTime.Now.ToString()));
             _dal.insert(kv);
         }
@@ -35,20 +36,20 @@ namespace ListaContactos
             return r;
         }
 
-        public static List<KeyValuePair<string,string>> GetModFromId(string id)
+        public static List<string[]> GetModFromId(string id)
         {
-            List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
+            List<string[]> l = new List<string[]>();
 
-            OleDbDataReader data = _dal.find("id_modificador,Data", $"where id_contacto = '{id}' order by Data desc");
+            OleDbDataReader data = _dal.find("id_modificador,descricao,Data", $"where id_contacto = '{id}' order by Data desc");
             if(data.HasRows)
             {
                 while(data.Read())
                 {
-                    kv.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetDateTime(1).ToString()));
+                    l.Add(new string[3]{ data.GetString(0),data.GetString(1),data.GetDateTime(2).ToString()});
                 }
             }
             data.Close();
-            return kv;
+            return l;
         }
     }
 }
