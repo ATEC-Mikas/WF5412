@@ -208,12 +208,12 @@ namespace ListaContactos
 
             foreach (string s in r)
             {
-                OleDbDataReader data = _dal.find("id,nome", $"where id='{s}'");
+                OleDbDataReader data = _dal.find("id,nome,titulo", $"where id='{s}'");
                 if (data.HasRows)
                 {
                     while (data.Read())
                     {
-                        contactos.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetString(1)));
+                        contactos.Add(new KeyValuePair<string, string>(data.GetString(0), $"{data.GetString(2)} {data.GetString(1)}"));
                     }
                 }
                 data.Close();
@@ -231,31 +231,31 @@ namespace ListaContactos
             List<KeyValuePair<string, string>> contactos = new List<KeyValuePair<string, string>>();
 
 
-            OleDbDataReader data = _dal.find("id,nome", $"where criador='{Mikas.EscapeSQLSQ(c.User)}' and publico=false");
+            OleDbDataReader data = _dal.find("id,nome,titulo", $"where criador='{Mikas.EscapeSQLSQ(c.User)}' and publico=false");
             if (data.HasRows)
             {
                 while (data.Read())
                 {
-                    contactos.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetString(1)));
+                    contactos.Add(new KeyValuePair<string, string>(data.GetString(0), $"{data.GetString(2)} {data.GetString(1)}"));
                 }
             }
             data.Close();
 
-            data = _dal.find("id,nome", $"where publico=true and criador='{Mikas.EscapeSQLSQ(c.User)}'");
+            data = _dal.find("id,nome,titulo", $"where publico=true and criador='{Mikas.EscapeSQLSQ(c.User)}'");
             if (data.HasRows)
             {
                 while (data.Read())
                 {
-                    contactos.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetString(1)));
+                    contactos.Add(new KeyValuePair<string, string>(data.GetString(0), $"{data.GetString(2)} {data.GetString(1)}"));
                 }
             }
 
-            data = _dal.find("id,nome", $"where publico=true and criador<>'{Mikas.EscapeSQLSQ(c.User)}'");
+            data = _dal.find("id,nome,titulo", $"where publico=true and criador<>'{Mikas.EscapeSQLSQ(c.User)}'");
             if (data.HasRows)
             {
                 while (data.Read())
                 {
-                    contactos.Add(new KeyValuePair<string, string>(data.GetString(0), data.GetString(1)));
+                    contactos.Add(new KeyValuePair<string, string>(data.GetString(0), $"{data.GetString(2)} {data.GetString(1)}"));
                 }
             }
             data.Close();
