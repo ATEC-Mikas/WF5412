@@ -256,6 +256,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormLogin";
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogin_FormClosing);
             this.panelSeed.ResumeLayout(false);
             this.panelSeed.PerformLayout();
             this.ResumeLayout(false);

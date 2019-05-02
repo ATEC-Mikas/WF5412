@@ -8,8 +8,11 @@ namespace ListaContactos
 {
     public static class Seed
     {
+        private static bool? _status=null;
+        public static bool? Status { get { return _status; } }
         private static Random _random = new Random();
         private static Log _log = new Log($"seeds/seed.txt");
+
         private static string[] titulo = {"Sr.","Dr.","Sra.", "Dra.", "Eng."};
         private static string[] pnomes = 
         {
@@ -57,7 +60,6 @@ namespace ListaContactos
             "Pinto",
             "Carvalho"
         };
-
         private static string[] empresa =
         {
             "Teste Architects",
@@ -94,14 +96,12 @@ namespace ListaContactos
             "Teste Applications",
             "Spire Teste"
         };
-
         private static string[] tiposCom = {
                             "Telefone",
                             "Email",
                             "Fax",
                             "Pager"
         };
-
         private static string[] morada =
         {
             "Avenida dos Aliados",
@@ -155,34 +155,32 @@ namespace ListaContactos
         {
             return pnomes[_random.Next(0, pnomes.Length - 1)];
         }
-
         private static string GetRandomUNome()
         {
             return unomes[_random.Next(0, unomes.Length - 1)];
         }
-
         private static string GetRandomTitulo()
         {
             return titulo[_random.Next(0, titulo.Length - 1)];
         }
-
         private static string GetRandomEmpresa()
         {
             return empresa[_random.Next(0, empresa.Length - 1)];
         }
-
         private static string GetRandomTipoCom()
         {
             return tiposCom[_random.Next(0, tiposCom.Length - 1)];
         }
-
         private static string GetRandomMorada()
         {
             return morada[_random.Next(0, morada.Length - 1)];
         }
 
-        public static bool Create()
+
+
+        public static void Create()
         {
+            _status = false;
             foreach (string s in tiposCom)
                 Comunicacoes.AddTipo(s);
 
@@ -218,7 +216,7 @@ namespace ListaContactos
                     _log.EscreverLog($"Contacto {t.Nome} concluido");
                 }
             }
-            return true;
+            _status = true;
         }
     }
 }

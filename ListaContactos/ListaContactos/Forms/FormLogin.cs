@@ -12,6 +12,8 @@ namespace ListaContactos
 {
     public partial class FormLogin : Form
     {
+        private System.Threading.Thread _thread;
+        private Timer t;
         private Conta _conta;
         public Conta Conta { get { return _conta; } }
 
@@ -125,9 +127,25 @@ namespace ListaContactos
         {
             panelSeed.Visible = true;
             panelSeed.Update();
-            if(Seed.Create())
+
+            t = new Timer();
+            t.Enabled = true;
+            t.Interval = 100;
+            t.Tick += CheckSeed;
+
+            _thread = new System.Threading.Thread(new System.Threading.ThreadStart(Seed.Create));
+            _thread.Start();
+        }
+
+        private void CheckSeed(object sender, EventArgs e)
+        {
+            if(Seed.Status.Value)
+            {
+                t.Enabled = false;
+                t.Tick -= CheckSeed;
                 MessageBox.Show("Seeds geradas!");
-            panelSeed.Visible = false;
+                panelSeed.Visible = false;
+            }
         }
 
         private void UserCheck(object sender, KeyPressEventArgs e)
@@ -135,6 +153,18 @@ namespace ListaContactos
             if(char.IsSymbol(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(!(Seed.Status == null))
+            {
+                if (!Seed.Status.Value)
+                {
+                    MessageBox.Show("Seeds ainda estão a ser geradas!");
+                    e.Cancel = true;
+                }
             }
         }
     }
