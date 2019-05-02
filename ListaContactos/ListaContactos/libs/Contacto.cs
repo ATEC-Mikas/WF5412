@@ -15,6 +15,7 @@ namespace ListaContactos
         private int _nif;
         private Conta _criador;
         private DateTime _dataCriada;
+        private string _foto;
         private List<KeyValuePair<string,string>> _comunicacoes;
         private List<string> _empresas;
         private bool _publico;
@@ -25,6 +26,7 @@ namespace ListaContactos
         private bool _comunicacoesChanged;
         private bool _empresasChanged;
         private bool _publicoChanged;
+        private bool _fotoChanged;
 
         private Contacto(bool t)
         {
@@ -35,7 +37,8 @@ namespace ListaContactos
             _comunicacoesChanged = t;
             _empresasChanged = t;
             _publicoChanged = t;
-        }
+            _fotoChanged = t;
+    }
 
         public Contacto(Conta c) : this(true)
         {
@@ -56,10 +59,11 @@ namespace ListaContactos
             _comunicacoes = new List<KeyValuePair<string, string>>();
             _empresas = new List<string>();
             _publico = false;
+            _foto = "default.jpg";
 
         }
 
-        public Contacto(string id,string nome,string titulo,string morada,int nif,Conta criador,DateTime dataCriada, bool publico, List<KeyValuePair<string, string>> comunicacoes, List<string> empresas) : this(false)
+        public Contacto(string id,string nome,string titulo,string morada,int nif,Conta criador,DateTime dataCriada, bool publico, List<KeyValuePair<string, string>> comunicacoes, List<string> empresas, string foto) : this(false)
         {
             _id = id;
             _nome = nome;
@@ -71,9 +75,10 @@ namespace ListaContactos
             _publico = publico;
             _comunicacoes = new List<KeyValuePair<string, string>>(comunicacoes);
             _empresas = new List<string>(empresas);
+            _foto = foto;
         }
 
-        public Contacto(Contacto c) : this(c.ID,c.Nome,c.Titulo,c.Morada,c.Nif,c.Criador,c.DataCriada,c.Publico,c.Comunicacoes,c.Empresas)
+        public Contacto(Contacto c) : this(c.ID,c.Nome,c.Titulo,c.Morada,c.Nif,c.Criador,c.DataCriada,c.Publico,c.Comunicacoes,c.Empresas,c.Foto)
         {
         }
 
@@ -94,7 +99,7 @@ namespace ListaContactos
         public List<KeyValuePair<string,string>> Comunicacoes { get { return new List<KeyValuePair<string, string>>(_comunicacoes); } }
         public List<string> Empresas { get { return new List<string>(_empresas); } }
         public bool Publico { get { return _publico; } set { if (value != _publico) { _publico = value; _publicoChanged = true; } } }
-
+        public string Foto { get { return _foto; } set{ _foto = value; _fotoChanged = true; } }
 
 
         public void AdicionarComunicacao(string k,string v)
@@ -164,6 +169,8 @@ namespace ListaContactos
                 kv.Add(new KeyValuePair<string, string>("nif", Mikas.EscapeSQLSQ(_nif.ToString())));
             if(_publicoChanged)
                 kv.Add(new KeyValuePair<string, string>("publico", Mikas.EscapeSQLSQ(_publico.ToString())));
+            if (_fotoChanged)
+                kv.Add(new KeyValuePair<string, string>("foto", Mikas.EscapeSQLSQ(_foto)));
 
             if (dal.exists($"where id = '{_id}'"))
             {
@@ -206,6 +213,8 @@ namespace ListaContactos
                         log += "comunicações ";
                     if (_empresasChanged)
                         log += "empresas ";
+                    if (_fotoChanged)
+                        log += "foto ";
                 }
                 Modificacoes.Registar(this, c,log);
                 _nomeChanged = false;
@@ -215,6 +224,7 @@ namespace ListaContactos
                 _comunicacoesChanged = false;
                 _empresasChanged = false;
                 _publicoChanged = false;
+                _fotoChanged = false;
             }
 
             return sucesso;

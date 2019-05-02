@@ -206,7 +206,6 @@ namespace ListaContactos
                     t.Titulo = GetRandomTitulo();
                     t.AdicionarComunicacao("Telefone", _random.Next(910000000, 919999999).ToString());
                     t.AdicionarComunicacao("Email", $"{t.Nome.Replace(' ','_')}@gmail.com");
-
                     for(int y = 0;y<6;y++)
                     {
                         t.AdicionarEmpresa($"{GetRandomEmpresa()} {y}");

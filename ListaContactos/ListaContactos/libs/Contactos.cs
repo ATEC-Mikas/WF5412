@@ -16,7 +16,7 @@ namespace ListaContactos
             List<Contacto> contactos = new List<Contacto>();
 
 
-            OleDbDataReader data = _dal.get("id,nome,titulo,morada,nif,criador,data_criado,publico");
+            OleDbDataReader data = _dal.get("id,nome,titulo,morada,nif,criador,data_criado,publico,foto");
             if (data.HasRows)
             {
                 while (data.Read())
@@ -31,7 +31,8 @@ namespace ListaContactos
                                                    data.GetDateTime(6),
                                                    data.GetBoolean(7),
                                                    Comunicacoes.FindById(id),
-                                                   Empresas.FindById(id))
+                                                   Empresas.FindById(id),
+                                                   data.GetString(7))
                             );
                 }
             }
@@ -42,7 +43,7 @@ namespace ListaContactos
         public static Contacto FindById(string id)
         {
             Contacto c=null;
-            OleDbDataReader data = _dal.find("nome,titulo,morada,nif,criador,data_criado,publico", $"where id='{id}'");
+            OleDbDataReader data = _dal.find("nome,titulo,morada,nif,criador,data_criado,publico,foto", $"where id='{id}'");
             if (data.HasRows)
             {
                 while (data.Read())
@@ -56,7 +57,8 @@ namespace ListaContactos
                                     data.GetDateTime(5),
                                     data.GetBoolean(6),
                                     Comunicacoes.FindById(id), 
-                                    Empresas.FindById(id)
+                                    Empresas.FindById(id),
+                                    data.GetString(7)
                         );
                 }
             }
@@ -267,7 +269,7 @@ namespace ListaContactos
             List<Contacto> contactos = new List<Contacto>();
 
 
-            OleDbDataReader data = _dal.find("id,nome,titulo,morada,nif,criador,data_criado,publico",$"where criador='{Mikas.EscapeSQLSQ(c.User)}' and publico=false");
+            OleDbDataReader data = _dal.find("id,nome,titulo,morada,nif,criador,data_criado,publico,foto",$"where criador='{Mikas.EscapeSQLSQ(c.User)}' and publico=false");
             if (data.HasRows)
             {
                 while (data.Read())
@@ -282,12 +284,13 @@ namespace ListaContactos
                                                data.GetDateTime(6),
                                                data.GetBoolean(7),
                                                Comunicacoes.FindById(id),
-                                               Empresas.FindById(id))
+                                               Empresas.FindById(id),
+                                               data.GetString(8))
                         );
                 }
             }
             data.Close();
-            data = _dal.find("id,nome,titulo,morada,nif,criador,data_criado,publico", $"where publico=true");
+            data = _dal.find("id,nome,titulo,morada,nif,criador,data_criado,publico,foto", $"where publico=true");
             if (data.HasRows)
             {
                 while (data.Read())
@@ -302,7 +305,8 @@ namespace ListaContactos
                                                data.GetDateTime(6),
                                                data.GetBoolean(7),
                                                Comunicacoes.FindById(id),
-                                               Empresas.FindById(id))
+                                               Empresas.FindById(id),
+                                               data.GetString(8))
                         );
                 }
             }

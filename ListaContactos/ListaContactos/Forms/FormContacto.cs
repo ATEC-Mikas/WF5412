@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ListaContactos
 {
@@ -17,6 +18,7 @@ namespace ListaContactos
         private Conta _conta;
         private bool _deleted;
         private bool _criado;
+        private bool _fotonova;
 
         public FormContacto()
         {
@@ -27,6 +29,8 @@ namespace ListaContactos
             btnCancelar.Visible = false;
             btnCancelar.Enabled = false;
             _deleted = false;
+            openFile.Filter = "JPEG Picture (*.jpg)|*.jpg|PNG (*.png)|*.png";
+            _fotonova = false;
         }
 
         public FormContacto(Conta c) : this()
@@ -39,6 +43,7 @@ namespace ListaContactos
             _criado = true;
             btnLogs.Visible = false;
             btnDelete.Visible = false;
+            CarregarFoto(_contacto.Foto);
         }
 
         public FormContacto(Contacto c,Conta conta)  : this()
@@ -49,6 +54,7 @@ namespace ListaContactos
             txtNome.Text = _contacto.Nome;
             txtTitulo.Text = _contacto.Titulo;
             txtMorada.Text = _contacto.Morada;
+            CarregarFoto(c.Foto);
             if (_contacto.Nif != -1)
                 txtNif.Text = _contacto.Nif.ToString();
             else
@@ -68,6 +74,7 @@ namespace ListaContactos
             btnCRemov.Enabled = false;
             btnEAdd.Enabled = false;
             btnERemov.Enabled = false;
+            btnMudarFoto.Enabled = false;
 
             if (_contacto.Criador.User != _conta.User)
             {
@@ -81,6 +88,12 @@ namespace ListaContactos
 
             _criado = false;
         }
+        
+        private void CarregarFoto(string l)
+        {
+            PictureBox.ImageLocation = $"db\\imgs\\{l}";
+            PictureBox.Load();
+        }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -91,7 +104,10 @@ namespace ListaContactos
                 txtNif.Enabled = true;
                 txtTitulo.Enabled = true;
                 if (_contacto.Criador.User == _conta.User)
+                {
                     checkPublico.Enabled = true;
+                    btnMudarFoto.Enabled = true;
+                }
                 btnCAdd.Enabled = true;
                 btnCRemov.Enabled = true;
                 btnEAdd.Enabled = true;
@@ -130,11 +146,13 @@ namespace ListaContactos
                         btnCancelar.Visible = false;
                         btnLogs.Visible = true;
                         btnDelete.Visible = true;
+                        btnMudarFoto.Enabled = false;
                         btnEdit.Text = "Editar";
                         MessageBox.Show("Não houve nenhuma alteração.");
                     } else 
                     if(_contacto.save(_conta))
                     {
+                        _criado = false;
                         txtNome.Enabled = false;
                         txtMorada.Enabled = false;
                         txtNif.Enabled = false;
@@ -148,6 +166,12 @@ namespace ListaContactos
                         btnCancelar.Visible = false;
                         btnLogs.Visible = true;
                         btnDelete.Visible = true;
+                        btnMudarFoto.Enabled = false; ;
+                        if (_fotonova)
+                        {
+                            GuardarFoto();
+                            CarregarFoto(_contacto.Foto);
+                        }
                         btnEdit.Text = "Editar";
                         MessageBox.Show("Salvo com sucesso!");
                         lblUltimaModific.Text = Modificacoes.UltimaMod(_contacto);
@@ -280,6 +304,9 @@ namespace ListaContactos
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            CarregarFoto(_contactoBackup.Foto);
+            ApagarFotoTemp();
+            _fotonova = false;
             txtNome.Text = _contactoBackup.Nome;
             txtTitulo.Text = _contactoBackup.Titulo;
             txtMorada.Text = _contactoBackup.Morada;
@@ -292,7 +319,6 @@ namespace ListaContactos
             foreach (string s in Empresas.FindById(_contactoBackup.ID))
                 ListEmpresas.Items.Add(s);
             dataGridComunicacoes.Rows.Clear();
-            //ListComunicacoes.Items.Clear();
             foreach (KeyValuePair<string, string> kv in Comunicacoes.FindById(_contactoBackup.ID))
                 dataGridComunicacoes.Rows.Add(kv.Key, kv.Value);
             txtNome.Enabled = false;
@@ -307,6 +333,7 @@ namespace ListaContactos
             btnEdit.Text = "Editar";
             btnCancelar.Enabled = false;
             btnCancelar.Visible = false;
+
             _contacto = new Contacto(_contactoBackup);
         }
 
@@ -346,10 +373,6 @@ namespace ListaContactos
 
         private bool isEntradasIguais()
         {
-            //if (CompareList(_contacto.Empresas,_contactoBackup.Empresas))
-            //    MessageBox.Show("Porra");
-            //if (CompareList(_contacto.Comunicacoes,_contactoBackup.Comunicacoes))
-            //    MessageBox.Show(":(");
             if (_criado)
                 return false;
             return _contacto.Nome == _contactoBackup.Nome
@@ -358,7 +381,44 @@ namespace ListaContactos
                    && _contacto.Titulo == _contactoBackup.Titulo
                    && _contacto.Publico == _contactoBackup.Publico
                    && CompareList(_contacto.Empresas, _contactoBackup.Empresas)
-                   && CompareList(_contacto.Comunicacoes, _contactoBackup.Comunicacoes);
+                   && CompareList(_contacto.Comunicacoes, _contactoBackup.Comunicacoes)
+                   && !_fotonova;
+        }
+
+        private void btnMudarFoto_Click(object sender, EventArgs e)
+        {
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    _fotonova = true;
+                    string[] r = openFile.SafeFileName.Split('.');
+
+                    if(!Directory.Exists("db/imgs/temp/"))
+                        Directory.CreateDirectory("db/imgs/temp/");
+
+                    _contacto.Foto = $"{_contacto.ID}.{r[r.Length - 1]}";
+                    MessageBox.Show(_contacto.Foto);
+                    ApagarFotoTemp();
+                    File.Copy(openFile.FileName, $"db/imgs/temp/{_contacto.Foto}");
+                    CarregarFoto($"temp/{_contacto.Foto}");
+                }
+
+        }
+
+        private void ApagarFotoTemp()
+        {
+            if (File.Exists($"db/imgs/temp/{_contacto.Foto}"))
+                File.Delete($"db/imgs/temp/{_contacto.Foto}");
+        }
+
+        private void GuardarFoto()
+        {
+            if (File.Exists($"db/imgs/{_contacto.ID}.png"))
+                File.Delete($"db/imgs/{_contacto.ID}.png");
+            if (File.Exists($"db/imgs/{_contacto.ID}.jpg"))
+                File.Delete($"db/imgs/{_contacto.ID}.jpg");
+            File.Copy($"db/imgs/temp/{_contacto.Foto}", $"db/imgs/{_contacto.Foto}");
+            CarregarFoto(_contactoBackup.Foto);
+            ApagarFotoTemp();
         }
     }
 }
