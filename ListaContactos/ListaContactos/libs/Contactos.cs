@@ -55,7 +55,7 @@ namespace ListaContactos
                                     Contas.FindByUser(data.GetString(4)),
                                     data.GetDateTime(5),
                                     data.GetBoolean(6),
-                                    Comunicacoes.FindById(id),
+                                    Comunicacoes.FindById(id), 
                                     Empresas.FindById(id)
                         );
                 }
