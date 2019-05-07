@@ -55,7 +55,6 @@ namespace ListaContactos
             _morada = string.Empty;
             _nif = -1;
             _criador = new Conta(c);
-            _dataCriada = DateTime.Now;
             _comunicacoes = new List<KeyValuePair<string, string>>();
             _empresas = new List<string>();
             _publico = false;
@@ -180,9 +179,15 @@ namespace ListaContactos
             {
                 kv.Add(new KeyValuePair<string, string>("id", _id));
                 kv.Add(new KeyValuePair<string, string>("criador", Mikas.EscapeSQLSQ(_criador.User)));
-                kv.Add(new KeyValuePair<string, string>("data_criado", _dataCriada.ToString()));
                 sucesso = dal.insert(kv);
+
                 log = "Contacto criado.";
+
+                System.Data.OleDb.OleDbDataReader data = dal.find("data_criado", $"where id='{_id}'");
+                data.Read();
+                _dataCriada = data.GetDateTime(0);
+                data.Close();
+
             }
 
             if(_comunicacoesChanged)
