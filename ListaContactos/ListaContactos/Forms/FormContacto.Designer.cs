@@ -269,7 +269,7 @@
             // panelBlock
             // 
             this.panelBlock.Controls.Add(this.labelR);
-            this.panelBlock.Location = new System.Drawing.Point(2, 309);
+            this.panelBlock.Location = new System.Drawing.Point(0, 0);
             this.panelBlock.Name = "panelBlock";
             this.panelBlock.Size = new System.Drawing.Size(945, 327);
             this.panelBlock.TabIndex = 27;
@@ -359,8 +359,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 329);
-            this.Controls.Add(this.btnMudarFoto);
-            this.Controls.Add(this.PictureBox);
             this.Controls.Add(this.panelBlock);
             this.Controls.Add(this.dataGridComunicacoes);
             this.Controls.Add(this.lblCriador);
@@ -386,6 +384,9 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnLogs);
+            this.Controls.Add(this.PictureBox);
+            this.Controls.Add(this.btnMudarFoto);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormContacto";
             this.Text = "Contacto";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormContacto_FormClosing);

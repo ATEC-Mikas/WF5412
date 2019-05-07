@@ -396,7 +396,6 @@ namespace ListaContactos
                         Directory.CreateDirectory("db/imgs/temp/");
 
                     _contacto.Foto = $"{_contacto.ID}.{r[r.Length - 1]}";
-                    MessageBox.Show(_contacto.Foto);
                     ApagarFotoTemp();
                     File.Copy(openFile.FileName, $"db/imgs/temp/{_contacto.Foto}");
                     CarregarFoto($"temp/{_contacto.Foto}");
