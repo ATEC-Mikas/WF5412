@@ -151,6 +151,7 @@ namespace ListaContactos
             "Escadas das Verdades"
         };
 
+        // Get Random {x}
         private static string GetRandomPNome()
         {
             return pnomes[_random.Next(0, pnomes.Length - 1)];
@@ -177,7 +178,9 @@ namespace ListaContactos
         }
 
 
-
+        /// <summary>
+        /// Função para gerar as strings , deve ser começada numa nova thread
+        /// </summary>
         public static void Create()
         {
             _status = false;

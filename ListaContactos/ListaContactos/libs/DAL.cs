@@ -14,11 +14,20 @@ namespace ListaContactos
         private Log _logs;
         private Log _querylogs;
 
+        /// <summary>
+        /// Função para dar escape a alguns caracteres
+        /// </summary>
+        /// <param name="s">String a dar escape</param>
+        /// <returns>String escapada</returns>
         private static string EscapeSQL(string s)
         {
             return s.Replace("'", "[']");
         }
 
+        /// <summary>
+        /// Construtor para a DAL
+        /// </summary>
+        /// <param name="tabela">Nome da tablea</param>
         public DAL(string tabela) {
             _conexao = new OleDbConnection();
             _conexao.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db\\listacontactos.mdb;";
@@ -27,6 +36,11 @@ namespace ListaContactos
             _querylogs = new Log($"logs/Queries/{_tabela}.txt");
         }
 
+        /// <summary>
+        /// Função equivalente a um select sem parametros adicionais
+        /// </summary>
+        /// <param name="s">String com o que quer ir buscar à tabela</param>
+        /// <returns>OleDbDataReader com os dados</returns>
         public OleDbDataReader get(string s)
         {
             if (_conexao.State != System.Data.ConnectionState.Open)
@@ -60,6 +74,12 @@ namespace ListaContactos
             return t;
         }
 
+        /// <summary>
+        /// Função equivalente a um select com parametros adicionais
+        /// </summary>
+        /// <param name="s">String com o que quer ir buscar à tabela</param>
+        /// <param name="a">String com os parametros adicionais assim como um "where"</param>
+        /// <returns>OleDbDataReader com os dados</returns>
         public OleDbDataReader find(string s,string a)
         {
             if (_conexao.State != System.Data.ConnectionState.Open)
@@ -92,6 +112,11 @@ namespace ListaContactos
             return t;
         }
 
+        /// <summary>
+        /// Função equivalente a um insert
+        /// </summary>
+        /// <param name="kv">Lista de KeyValuePair em que a Key corresponde à coluna e o Value ao valor a adicionar</param>
+        /// <returns>Boolean do Sucesso da operação</returns>
         public bool insert(List<KeyValuePair<string,string>> kv)
         {
             bool falhou = false;
@@ -150,6 +175,12 @@ namespace ListaContactos
             return !falhou;
         }
 
+        /// <summary>
+        /// Função equivalente a um update
+        /// </summary>
+        /// <param name="kv">Lista de KeyValuePair em que a Key corresponde à coluna e o Value ao valor a adicionar</param>
+        /// <param name="a">Query que determina o que vai ser afetado Exemplo: "where id==1"</param>
+        /// <returns>Boolean do Sucesso da operação</returns>
         public bool update(List<KeyValuePair<string, string>> kv, string a)
         {
             bool falhou = false;
@@ -206,6 +237,11 @@ namespace ListaContactos
 
         }
 
+        /// <summary>
+        /// Função equivalente a um delete
+        /// </summary>
+        /// <param name="a">Query que determina o que vai ser apagado Exemplo: "where id==1"</param>
+        /// <returns>Boolean do Sucesso da operação</returns>
         public bool delete(string a)
         {
             bool falhou = false;
@@ -248,6 +284,11 @@ namespace ListaContactos
 
         }
 
+        /// <summary>
+        /// Função que verifica se existe na base de dados
+        /// </summary>
+        /// <param name="a">Query que determina o que é verificado Exemplo: "where id==1"</param>
+        /// <returns>Boolean de existência</returns>
         public bool exists(string a)
         {
             if (_conexao.State != System.Data.ConnectionState.Open)

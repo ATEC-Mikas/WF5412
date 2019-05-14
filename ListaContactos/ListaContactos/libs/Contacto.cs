@@ -28,6 +28,10 @@ namespace ListaContactos
         private bool _publicoChanged;
         private bool _fotoChanged;
 
+        /// <summary>
+        /// Contrutor base
+        /// </summary>
+        /// <param name="t">Boolean para determinar se inicia a false ou a true</param>
         private Contacto(bool t)
         {
             _nomeChanged = t;
@@ -40,6 +44,10 @@ namespace ListaContactos
             _fotoChanged = t;
     }
 
+        /// <summary>
+        /// Construtor de novo contacto
+        /// </summary>
+        /// <param name="c">Conta Criadora</param>
         public Contacto(Conta c) : this(true)
         {
             DAL dal = new DAL("Contato");
@@ -62,6 +70,20 @@ namespace ListaContactos
 
         }
 
+        /// <summary>
+        /// Construtor de Contacto já criado
+        /// </summary>
+        /// <param name="id">ID do Contacto</param>
+        /// <param name="nome">Nome do Contacto</param>
+        /// <param name="titulo">Titulo do Contacto</param>
+        /// <param name="morada">Morada do Contacto</param>
+        /// <param name="nif">Nif do Contacto</param>
+        /// <param name="criador">Criador do Contacto</param>
+        /// <param name="dataCriada">Data criada do Contacto</param>
+        /// <param name="publico">Contacto Publico?</param>
+        /// <param name="comunicacoes">Lista de Comunicacoes</param>
+        /// <param name="empresas">Lista de Empresas</param>
+        /// <param name="foto">Local Foto</param>
         public Contacto(string id,string nome,string titulo,string morada,int nif,Conta criador,DateTime dataCriada, bool publico, List<KeyValuePair<string, string>> comunicacoes, List<string> empresas, string foto) : this(false)
         {
             _id = id;
@@ -77,6 +99,10 @@ namespace ListaContactos
             _foto = foto;
         }
 
+        /// <summary>
+        /// Contrutor Cópia do Contacto
+        /// </summary>
+        /// <param name="c">Contacto a Copiar</param>
         public Contacto(Contacto c) : this(c.ID,c.Nome,c.Titulo,c.Morada,c.Nif,c.Criador,c.DataCriada,c.Publico,c.Comunicacoes,c.Empresas,c.Foto)
         {
         }
@@ -87,26 +113,83 @@ namespace ListaContactos
         }
 
 
-
+        /// <summary>
+        /// Id do Contacto
+        /// </summary>
         public string ID { get { return _id; } }
+
+        /// <summary>
+        /// Nome do Contacto
+        /// </summary>
         public string Nome { get { return _nome; } set { if (validarString(value) && value!=Nome) { _nome = value; _nomeChanged = true; } } }
+
+        /// <summary>
+        /// Titulo do Contacto
+        /// </summary>
         public string Titulo { get { return _titulo; } set { if (value != Titulo) { _titulo = value; _tituloChanged = true; } } } 
+
+        /// <summary>
+        /// Morada do Contacto
+        /// </summary>
         public string Morada { get { return _morada; } set { if (value != Morada) { _morada = value; _moradaChanged = true; } } }
+
+        /// <summary>
+        /// Nif do Contacto
+        /// </summary>
         public int Nif { get { return _nif; } set { if (((value > 100000000 && value < 999999999) || value==-1) && value!=Nif) { _nif = value; _nifChanged = true; } } }
+
+        /// <summary>
+        /// Conta do criador do Contacto
+        /// </summary>
         public Conta Criador { get { return _criador; } }
+
+        /// <summary>
+        /// Data Criação do Contacto
+        /// </summary>
         public DateTime DataCriada { get { return _dataCriada; } }
+        
+        /// <summary>
+        /// Lista de Comunicações
+        /// </summary>
         public List<KeyValuePair<string,string>> Comunicacoes { get { return new List<KeyValuePair<string, string>>(_comunicacoes); } }
+
+        /// <summary>
+        /// Lista de Empresas
+        /// </summary>
         public List<string> Empresas { get { return new List<string>(_empresas); } }
+
+        /// <summary>
+        /// Contacto é publico?
+        /// </summary>
         public bool Publico { get { return _publico; } set { if (value != _publico) { _publico = value; _publicoChanged = true; } } }
+
+        /// <summary>
+        /// Local da Fotografia
+        /// </summary>
         public string Foto { get { return _foto; } set{ _foto = value; _fotoChanged = true; } }
 
-
-        public void AdicionarComunicacao(string k,string v)
+        /// <summary>
+        /// Adicionar uma comunicacao
+        /// </summary>
+        /// <param name="k">Nome da Comunicação</param>
+        /// <param name="v">Valor da Comunicação</param>
+        /// <returns>Boolean de Sucesso da operação</returns>
+        public bool AdicionarComunicacao(string k,string v)
         {
-            _comunicacoes.Add(new KeyValuePair<string, string>(k, v));
-            _comunicacoesChanged = true;
+            if(!_comunicacoes.Contains(new KeyValuePair<string, string>(k, v)))
+            {
+                _comunicacoes.Add(new KeyValuePair<string, string>(k, v));
+                _comunicacoesChanged = true;
+                return true;
+            }
+            return false;
         }
 
+        /// <summary>
+        /// Remover a Comunicação
+        /// </summary>
+        /// <param name="i">Numero index na lista</param>
+        /// <returns>Boolean de Sucesso da operação</returns>
         public bool RemoverComunicacao(int i)
         {
             if(i>=0&&i>_comunicacoes.Count-1)
@@ -118,6 +201,12 @@ namespace ListaContactos
             return false;
         }
 
+        /// <summary>
+        /// Remover a Comunicação
+        /// </summary>
+        /// <param name="k">Nome da Comunicacoes</param>
+        /// <param name="v">Valor da Comunicacao</param>
+        /// <returns>Boolean de Sucesso da operação</returns>
         public bool RemoverComunicacao(string k,string v)
         {
             if(!_comunicacoesChanged)
@@ -126,12 +215,27 @@ namespace ListaContactos
                 return _comunicacoes.Remove(new KeyValuePair<string, string>(k, v));
         }
 
-        public void AdicionarEmpresa(string s)
+        /// <summary>
+        /// Adicionar uma empresa
+        /// </summary>
+        /// <param name="s">Nome da Empresa</param>
+        /// <returns>Boolean de Sucesso da operação</returns>
+        public bool AdicionarEmpresa(string s)
         {
-            _empresas.Add(s);
-            _empresasChanged = true;
+            if(!_empresas.Contains(s))
+            {
+                _empresas.Add(s);
+                _empresasChanged = true;
+                return true;
+            }
+            return false;
         }
 
+        /// <summary>
+        /// Remover uma empresa
+        /// </summary>
+        /// <param name="i">Numero index na lista</param>
+        /// <returns>Boolean de Sucesso da operação</returns>
         public bool RemoverEmpresa(int i)
         {
             if (i >= 0 && i > _empresas.Count - 1)
@@ -143,6 +247,11 @@ namespace ListaContactos
             return false;
         }
 
+        /// <summary>
+        /// Remover uma empresa
+        /// </summary>
+        /// <param name="s">Nome da Empresa</param>
+        /// <returns>Boolean de Sucesso da operação</returns>
         public bool RemoverEmpresa(string s)
         {
             if (!_empresasChanged)
@@ -151,6 +260,11 @@ namespace ListaContactos
                 return _empresas.Remove(s);
         }
 
+        /// <summary>
+        /// Salvar o Contacto
+        /// </summary>
+        /// <param name="c">Conta atual</param>
+        /// <returns>Boolean de Sucesso da operação</returns>
         public bool save(Conta c)
         {
             bool sucesso = false;
@@ -235,6 +349,10 @@ namespace ListaContactos
             return sucesso;
         }
 
+        /// <summary>
+        /// Apagar o Contacto
+        /// </summary>
+        /// <returns>Boolean de Sucesso da operação</returns>
         public bool delete()
         {
             bool sucesso = false;

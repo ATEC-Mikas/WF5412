@@ -14,6 +14,9 @@ namespace ListaContactos
         private bool _nomeChanged;
         private bool _passwordChanged;
 
+        /// <summary>
+        /// Construtor da Conta vazia
+        /// </summary>
         public Conta()
         {
             _user = string.Empty;
@@ -21,6 +24,12 @@ namespace ListaContactos
             _password = string.Empty;
         }
 
+        /// <summary>
+        /// Contrutor da Conta Atributos
+        /// </summary>
+        /// <param name="user">Username</param>
+        /// <param name="nome">Nome da Pessoa</param>
+        /// <param name="password">Palavra-Passe Encriptada</param>
         public Conta(string user,string nome,string password)
         {
             User = user;
@@ -28,6 +37,10 @@ namespace ListaContactos
             _password = password;
         }
 
+        /// <summary>
+        /// Contrutor da Conta Cópia
+        /// </summary>
+        /// <param name="c">Conta a copiar</param>
         public Conta(Conta c)
         {
             User = c.User;
@@ -35,17 +48,27 @@ namespace ListaContactos
             _password = c.Password;
         }
 
+        /// <summary>
+        /// Username do Utilizador
+        /// </summary>
         public string User
         {
             get { return _user; }
             set { if (validarString(value)) _user = value; }
         }
+
+        /// <summary>
+        /// Nome do Utilizador
+        /// </summary>
         public string Nome
         {
             get { return _nome; }
             set { if (validarString(value)) { _nome = value; _nomeChanged = true; } }
         }
 
+        /// <summary>
+        /// Palavra pass do Utilizador
+        /// </summary>
         public string Password
         {
             get { return _password; }
@@ -57,6 +80,10 @@ namespace ListaContactos
             return !String.IsNullOrEmpty(s) && !String.IsNullOrWhiteSpace(s) && s.Count()<100 && s.Count() > 2;
         }
 
+        /// <summary>
+        /// Função para salvar a conta
+        /// </summary>
+        /// <returns>Boolean do sucesso da operação</returns>
         public bool save()
         {
             DAL dal = new DAL("Conta");
@@ -76,6 +103,10 @@ namespace ListaContactos
             }
         }
 
+        /// <summary>
+        /// Função para apagar a conta
+        /// </summary>
+        /// <returns>Boolean do sucesso da operação</returns>
         public bool delete()
         {
             DAL dal = new DAL("Conta");
@@ -83,6 +114,12 @@ namespace ListaContactos
                 return dal.delete($"where username = '{Mikas.EscapeSQLSQ(_user)}'");
             return false;
         }
+
+        /// <summary>
+        /// Função para comparar a password não encriptada com a encripatada
+        /// </summary>
+        /// <param name="p">Password não encriptada</param>
+        /// <returns>Boolean do sucesso da operação</returns>
         public bool comparePassword(string p)
         {
             return BCrypt.Net.BCrypt.Verify(p, _password);

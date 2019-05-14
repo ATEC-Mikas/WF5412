@@ -11,7 +11,11 @@ namespace ListaContactos
     {
         private static DAL _dal = new DAL("Comunicacao");
 
-
+        /// <summary>
+        /// Função para encontrar comunicação pelo ID da mesma
+        /// </summary>
+        /// <param name="id">Id da comunicação</param>
+        /// <returns>Lista de KeyValuePair onde a Key é o nome da comunicacao e o Value é o valor da comunicacao</returns>
         public static List<KeyValuePair<string,string>> FindById(string id)
         {
             List<KeyValuePair<string, string>> kv = new List<KeyValuePair<string, string>>();
@@ -30,6 +34,10 @@ namespace ListaContactos
             return kv;
         }
 
+        /// <summary>
+        /// Função para ter todos os tipos de comunicação
+        /// </summary>
+        /// <returns>Dicionário sendo a Key o ID e o Value o nome da comunicacao</returns>
         public static Dictionary<string,string> GetTipos()
         {
             DAL tipodal = new DAL("Tipo_Comunicacao");
@@ -47,6 +55,11 @@ namespace ListaContactos
             return dic;
         }
 
+        /// <summary>
+        /// Função para encontrar contactos pela comunicacao
+        /// </summary>
+        /// <param name="nome">Nome da Comunicacao</param>
+        /// <returns>Lista de IDs de contactos</returns>
         public static List<string> FindByComunicacao(string nome)
         {
             List<string> list = new List<string>();
@@ -62,7 +75,11 @@ namespace ListaContactos
             return list;
         }
 
-
+        /// <summary>
+        /// Função para obter o Tipo de comunicação pelo ID
+        /// </summary>
+        /// <param name="tipo">id Comunicação</param>
+        /// <returns>Nome da Comunicação</returns>
         public static string GetTipoById(string tipo)
         {
             DAL tipodal = new DAL("Tipo_Comunicacao");
@@ -80,6 +97,11 @@ namespace ListaContactos
             return r;
         }
 
+        /// <summary>
+        /// Função para obter o Id do tipo de comunicação pelo Nome do tipo
+        /// </summary>
+        /// <param name="nome">Nome do Tipo de Comunicação</param>
+        /// <returns>id da comunicação | null se não encontrar</returns>
         public static string GetTipoByName(string nome)
         {
             DAL tipodal = new DAL("Tipo_Comunicacao");
@@ -97,6 +119,11 @@ namespace ListaContactos
             return r;
         }
 
+        /// <summary>
+        /// Função para Sincronizar uma lista com a lista de base de dados
+        /// </summary>
+        /// <param name="kvl">Lista de KeyValuePair onde Key é o nome do tipo de comunicacao e o Value é o valor da comunicacao</param>
+        /// <param name="id">Id do Contacto</param>
         public static void Sync(List<KeyValuePair<string,string>> kvl, string id)
         {
             List<KeyValuePair<string,string>> l = FindById(id);
@@ -120,6 +147,10 @@ namespace ListaContactos
             }
         }
 
+        /// <summary>
+        /// Função para adicionar um tipo de comunicação
+        /// </summary>
+        /// <param name="s">Nome da Comunicação</param>
         public static void AddTipo(string s)
         {
             if(GetTipoByName(s)==null){
