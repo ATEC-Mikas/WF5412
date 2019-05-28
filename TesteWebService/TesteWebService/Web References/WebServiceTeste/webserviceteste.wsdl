@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://apps.cm-gaia.pt/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://apps.cm-gaia.pt/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://apps.cm-gaia.pt/">
+      <s:element name="ObterInteiro">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObterInteiroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ObterInteiroResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObterString">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObterStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObterStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QuemDizOla">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nome" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QuemDizOlaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QuemDizOlaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObterObjectoComplexo">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObterObjectoComplexoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObterObjectoComplexoResult" type="tns:ComplexObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ComplexObject">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prim_nome" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ult_nome" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AtualizarUtilizadorTestes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ut" type="tns:UtilizadorTestes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UtilizadorTestes">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AtualizarUtilizadorTestesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AtualizarUtilizadorTestesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GuardarUtilizadorTestes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ut" type="tns:UtilizadorTestes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GuardarUtilizadorTestesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GuardarUtilizadorTestesResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApagarUtilizadorTestes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApagarUtilizadorTestesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApagarUtilizadorTestesResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObterUtilizadorTestes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObterUtilizadorTestesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObterUtilizadorTestesResult" type="tns:UtilizadorTestes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObterListaUtilizadoresTestes">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObterListaUtilizadoresTestesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObterListaUtilizadoresTestesResult" type="tns:ArrayOfUtilizadorTestes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUtilizadorTestes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UtilizadorTestes" nillable="true" type="tns:UtilizadorTestes" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObterInteiroSoapIn">
+    <wsdl:part name="parameters" element="tns:ObterInteiro" />
+  </wsdl:message>
+  <wsdl:message name="ObterInteiroSoapOut">
+    <wsdl:part name="parameters" element="tns:ObterInteiroResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObterStringSoapIn">
+    <wsdl:part name="parameters" element="tns:ObterString" />
+  </wsdl:message>
+  <wsdl:message name="ObterStringSoapOut">
+    <wsdl:part name="parameters" element="tns:ObterStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="QuemDizOlaSoapIn">
+    <wsdl:part name="parameters" element="tns:QuemDizOla" />
+  </wsdl:message>
+  <wsdl:message name="QuemDizOlaSoapOut">
+    <wsdl:part name="parameters" element="tns:QuemDizOlaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObterObjectoComplexoSoapIn">
+    <wsdl:part name="parameters" element="tns:ObterObjectoComplexo" />
+  </wsdl:message>
+  <wsdl:message name="ObterObjectoComplexoSoapOut">
+    <wsdl:part name="parameters" element="tns:ObterObjectoComplexoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AtualizarUtilizadorTestesSoapIn">
+    <wsdl:part name="parameters" element="tns:AtualizarUtilizadorTestes" />
+  </wsdl:message>
+  <wsdl:message name="AtualizarUtilizadorTestesSoapOut">
+    <wsdl:part name="parameters" element="tns:AtualizarUtilizadorTestesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GuardarUtilizadorTestesSoapIn">
+    <wsdl:part name="parameters" element="tns:GuardarUtilizadorTestes" />
+  </wsdl:message>
+  <wsdl:message name="GuardarUtilizadorTestesSoapOut">
+    <wsdl:part name="parameters" element="tns:GuardarUtilizadorTestesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApagarUtilizadorTestesSoapIn">
+    <wsdl:part name="parameters" element="tns:ApagarUtilizadorTestes" />
+  </wsdl:message>
+  <wsdl:message name="ApagarUtilizadorTestesSoapOut">
+    <wsdl:part name="parameters" element="tns:ApagarUtilizadorTestesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObterUtilizadorTestesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObterUtilizadorTestes" />
+  </wsdl:message>
+  <wsdl:message name="ObterUtilizadorTestesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObterUtilizadorTestesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObterListaUtilizadoresTestesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObterListaUtilizadoresTestes" />
+  </wsdl:message>
+  <wsdl:message name="ObterListaUtilizadoresTestesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObterListaUtilizadoresTestesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceTesteSoap">
+    <wsdl:operation name="ObterInteiro">
+      <wsdl:input message="tns:ObterInteiroSoapIn" />
+      <wsdl:output message="tns:ObterInteiroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObterString">
+      <wsdl:input message="tns:ObterStringSoapIn" />
+      <wsdl:output message="tns:ObterStringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QuemDizOla">
+      <wsdl:input message="tns:QuemDizOlaSoapIn" />
+      <wsdl:output message="tns:QuemDizOlaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObterObjectoComplexo">
+      <wsdl:input message="tns:ObterObjectoComplexoSoapIn" />
+      <wsdl:output message="tns:ObterObjectoComplexoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AtualizarUtilizadorTestes">
+      <wsdl:input message="tns:AtualizarUtilizadorTestesSoapIn" />
+      <wsdl:output message="tns:AtualizarUtilizadorTestesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUtilizadorTestes">
+      <wsdl:input message="tns:GuardarUtilizadorTestesSoapIn" />
+      <wsdl:output message="tns:GuardarUtilizadorTestesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApagarUtilizadorTestes">
+      <wsdl:input message="tns:ApagarUtilizadorTestesSoapIn" />
+      <wsdl:output message="tns:ApagarUtilizadorTestesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObterUtilizadorTestes">
+      <wsdl:input message="tns:ObterUtilizadorTestesSoapIn" />
+      <wsdl:output message="tns:ObterUtilizadorTestesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObterListaUtilizadoresTestes">
+      <wsdl:input message="tns:ObterListaUtilizadoresTestesSoapIn" />
+      <wsdl:output message="tns:ObterListaUtilizadoresTestesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceTesteSoap" type="tns:WebServiceTesteSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObterInteiro">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/ObterInteiro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterString">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/ObterString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuemDizOla">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/QuemDizOla" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterObjectoComplexo">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/ObterObjectoComplexo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AtualizarUtilizadorTestes">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/AtualizarUtilizadorTestes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUtilizadorTestes">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/GuardarUtilizadorTestes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApagarUtilizadorTestes">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/ApagarUtilizadorTestes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterUtilizadorTestes">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/ObterUtilizadorTestes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterListaUtilizadoresTestes">
+      <soap:operation soapAction="http://apps.cm-gaia.pt/ObterListaUtilizadoresTestes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceTesteSoap12" type="tns:WebServiceTesteSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObterInteiro">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/ObterInteiro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterString">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/ObterString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuemDizOla">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/QuemDizOla" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterObjectoComplexo">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/ObterObjectoComplexo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AtualizarUtilizadorTestes">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/AtualizarUtilizadorTestes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUtilizadorTestes">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/GuardarUtilizadorTestes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApagarUtilizadorTestes">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/ApagarUtilizadorTestes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterUtilizadorTestes">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/ObterUtilizadorTestes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObterListaUtilizadoresTestes">
+      <soap12:operation soapAction="http://apps.cm-gaia.pt/ObterListaUtilizadoresTestes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceTeste">
+    <wsdl:port name="WebServiceTesteSoap" binding="tns:WebServiceTesteSoap">
+      <soap:address location="https://apps.cm-gaia.pt/apps/webserviceteste.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceTesteSoap12" binding="tns:WebServiceTesteSoap12">
+      <soap12:address location="https://apps.cm-gaia.pt/apps/webserviceteste.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
