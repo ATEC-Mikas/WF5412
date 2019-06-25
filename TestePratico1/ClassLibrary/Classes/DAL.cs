@@ -102,5 +102,23 @@ namespace ClassLibrary
             _connection.Close();
             return result;
         }
+
+        public DataTable ListaEncomenda(int id)
+        {
+            if (_connection.State != ConnectionState.Open)
+                _connection.Open();
+
+            DataTable result = new DataTable();
+
+            SqlCommand command = new SqlCommand();
+
+            command.CommandText = "SELECT * from [Order Details] where OrderID=@a";
+
+            command.Parameters.AddWithValue("@a", id);
+            command.Connection = _connection;
+            result.Load(command.ExecuteReader());
+            _connection.Close();
+            return result;
+        } 
     }
 }

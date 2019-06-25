@@ -110,12 +110,11 @@ namespace ConsoleApp
             Console.Clear();
             Console.WriteLine("Escreva o seu id de cliente: ");
             ClassLibrary.DAL dal = new ClassLibrary.DAL(Properties.Settings.Default.ConnectionString);
-            Console.WriteLine(dal.ListaContactosClientes().Count);
             string id = Console.ReadLine();
             ClassLibrary.Cliente cliente = dal.ListaContactosClientes().FirstOrDefault(c => c.ID.StartsWith(id,StringComparison.InvariantCultureIgnoreCase));
             Console.WriteLine(
                 (cliente == null ?
-                        "Não conseguimos encontrar um cliente com esse ID" : cliente.NomeContacto
+                        "Não conseguimos encontrar um cliente com esse ID" : $"Nome do contacto: {cliente.NomeContacto}"
                 ));
             Console.ReadKey();
         }

@@ -32,11 +32,13 @@
             this.btnVerEncomendas = new System.Windows.Forms.Button();
             this.dgvEncomendas = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnVerContacto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEncomendas)).BeginInit();
             this.SuspendLayout();
             // 
             // cboClientes
             // 
+            this.cboClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboClientes.FormattingEnabled = true;
             this.cboClientes.Location = new System.Drawing.Point(12, 57);
             this.cboClientes.Name = "cboClientes";
@@ -51,6 +53,7 @@
             this.btnVerEncomendas.TabIndex = 1;
             this.btnVerEncomendas.Text = "Ver Encomendas";
             this.btnVerEncomendas.UseVisualStyleBackColor = true;
+            this.btnVerEncomendas.Click += new System.EventHandler(this.BtnVerEncomendas_Click);
             // 
             // dgvEncomendas
             // 
@@ -59,10 +62,12 @@
             this.dgvEncomendas.AllowUserToResizeRows = false;
             this.dgvEncomendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEncomendas.Location = new System.Drawing.Point(12, 84);
+            this.dgvEncomendas.MultiSelect = false;
             this.dgvEncomendas.Name = "dgvEncomendas";
             this.dgvEncomendas.ReadOnly = true;
             this.dgvEncomendas.Size = new System.Drawing.Size(592, 289);
             this.dgvEncomendas.TabIndex = 2;
+            this.dgvEncomendas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvEncomendas_CellDoubleClick);
             // 
             // label1
             // 
@@ -73,11 +78,22 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Nome Cliente";
             // 
+            // btnVerContacto
+            // 
+            this.btnVerContacto.Location = new System.Drawing.Point(452, 55);
+            this.btnVerContacto.Name = "btnVerContacto";
+            this.btnVerContacto.Size = new System.Drawing.Size(104, 23);
+            this.btnVerContacto.TabIndex = 4;
+            this.btnVerContacto.Text = "Ver Contacto";
+            this.btnVerContacto.UseVisualStyleBackColor = true;
+            this.btnVerContacto.Click += new System.EventHandler(this.BtnVerContacto_Click);
+            // 
             // frmListarEncomendasClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 385);
+            this.Controls.Add(this.btnVerContacto);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvEncomendas);
             this.Controls.Add(this.btnVerEncomendas);
@@ -99,5 +115,6 @@
         private System.Windows.Forms.Button btnVerEncomendas;
         private System.Windows.Forms.DataGridView dgvEncomendas;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnVerContacto;
     }
 }
